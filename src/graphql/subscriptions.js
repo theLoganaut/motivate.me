@@ -7,6 +7,17 @@ export const onCreateUser = /* GraphQL */ `
       id
       username
       email
+      posts {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          userPostsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -18,6 +29,17 @@ export const onUpdateUser = /* GraphQL */ `
       id
       username
       email
+      posts {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          userPostsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -29,8 +51,85 @@ export const onDeleteUser = /* GraphQL */ `
       id
       username
       email
+      posts {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          userPostsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
+    }
+  }
+`;
+export const onCreatePost = /* GraphQL */ `
+  subscription OnCreatePost {
+    onCreatePost {
+      id
+      content
+      user {
+        id
+        username
+        email
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      userPostsId
+      owner
+    }
+  }
+`;
+export const onUpdatePost = /* GraphQL */ `
+  subscription OnUpdatePost {
+    onUpdatePost {
+      id
+      content
+      user {
+        id
+        username
+        email
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      userPostsId
+      owner
+    }
+  }
+`;
+export const onDeletePost = /* GraphQL */ `
+  subscription OnDeletePost {
+    onDeletePost {
+      id
+      content
+      user {
+        id
+        username
+        email
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      userPostsId
+      owner
     }
   }
 `;

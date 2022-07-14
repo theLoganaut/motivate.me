@@ -7,6 +7,17 @@ export const getUser = /* GraphQL */ `
       id
       username
       email
+      posts {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          userPostsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -23,8 +34,59 @@ export const listUsers = /* GraphQL */ `
         id
         username
         email
+        posts {
+          nextToken
+        }
         createdAt
         updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getPost = /* GraphQL */ `
+  query GetPost($id: ID!) {
+    getPost(id: $id) {
+      id
+      content
+      user {
+        id
+        username
+        email
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      userPostsId
+      owner
+    }
+  }
+`;
+export const listPosts = /* GraphQL */ `
+  query ListPosts(
+    $filter: ModelPostFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        content
+        user {
+          id
+          username
+          email
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        userPostsId
+        owner
       }
       nextToken
     }

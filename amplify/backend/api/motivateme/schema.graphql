@@ -14,4 +14,18 @@ type User
   id: ID!
   username: String!
   email: String!
+  posts: [Post] @hasMany
+}
+
+type Post
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create] }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  content: String!
+  user: User @belongsTo
 }
