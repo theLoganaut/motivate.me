@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "motivateme",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authmotivateme59c8fb3a59c8fb3a",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
