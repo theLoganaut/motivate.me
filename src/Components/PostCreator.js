@@ -7,22 +7,10 @@ import { v4 as uuidv4 } from "uuid";
 const PostCreator = ({ userID }) => {
   const [postContent, setPostContent] = useState("");
 
-  const [postData, setPostData] = useState({
-    userPostsId: userID,
-    content: "",
-    id: uuidv4(),
-  });
-
-  // useEffect(() => {
-  //   console.log("refresh?");
-  //   setPostData((postData) => ({
-  //     ...postData,
-  //     content: "",
-  //     id: uuidv4(),
-  //   }));
-  // }, [postData.content]);
-
-  const makeNewPost = async () => {
+  const submitPost = async (e) => {
+    e.persist();
+    console.log(e);
+    setPostContent("");
     const postData = {
       id: uuidv4(),
       content: postContent,
@@ -35,13 +23,8 @@ const PostCreator = ({ userID }) => {
     } catch (error) {
       console.log("error creating new Post:", error);
     } finally {
-      // setPostData((postData) => ({
-      //   ...postData,
-      //   content: "",
-      //   id: uuidv4(),
-      // }));
-      // setPostContent("");
-      // console.log(postData, "hit finally");
+      setPostContent("");
+      console.log(postData, "hit finally");
     }
   };
 
@@ -56,10 +39,11 @@ const PostCreator = ({ userID }) => {
               as="textarea"
               rows={3}
               onChange={(e) => setPostContent(e.target.value)}
+              value={postContent}
             />
           </Form.Group>
         </Form>
-        <Button variant="primary" type="submit" onClick={makeNewPost}>
+        <Button variant="primary" type="submit" onClick={submitPost}>
           {" "}
           Motivate!{" "}
         </Button>
