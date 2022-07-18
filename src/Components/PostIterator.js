@@ -1,24 +1,44 @@
-import React from "react";
-import { Card } from "react-bootstrap";
+import { useState } from "react";
+import { Card, Button } from "react-bootstrap";
+import CommentCreator from "./CommentCreator";
 
-const PostIterator = ({ posts }) => {
+const PostIterator = ({ posts, userId }) => {
   const postList = posts;
+
+  const [showPostCreator, setShowPostCreator] = useState(false);
+
+  const showCommentCreator = () => {
+    setShowPostCreator((showPostCreator) => !showPostCreator);
+  };
+
   return (
     <div>
-      {postList.map((i) => {
+      {postList.map((post) => {
         return (
           <Card style={{ marginRight: "1em", background: "#dee2e6" }}>
-            <Card.Body>
-              {i.content}
-              {/* deprecated  */}
-              {/* <Card.Title>{i.itemName}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">
-          {i.owner.fullName}
-        </Card.Subtitle>
-        <Card.Subtitle className="mb-2 text-muted">
-          transaction id here
-        </Card.Subtitle> */}
-            </Card.Body>
+            <Card.Body>{post.content}</Card.Body>
+            <Button style={{ maxWidth: "10em" }} onClick={showCommentCreator}>
+              Comment Motivation
+            </Button>
+            {post.comments.items.map((comment) => {
+              return (
+                <>
+                  {showPostCreator ? (
+                    <CommentCreator postId={post.id} userId={userId} />
+                  ) : (
+                    <Card
+                      style={{
+                        marginRight: "3em",
+                        marginLeft: "3em",
+                        background: "#dee2e6",
+                      }}
+                    >
+                      <Card.Body>{comment.content}</Card.Body>
+                    </Card>
+                  )}
+                </>
+              );
+            })}
           </Card>
         );
       })}

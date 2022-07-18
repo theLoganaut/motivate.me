@@ -20,6 +20,18 @@ export const createPublicUser = /* GraphQL */ `
         }
         nextToken
       }
+      comments {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserCommentsId
+          postCommentsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -45,6 +57,18 @@ export const updatePublicUser = /* GraphQL */ `
         }
         nextToken
       }
+      comments {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserCommentsId
+          postCommentsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -66,6 +90,18 @@ export const deletePublicUser = /* GraphQL */ `
           createdAt
           updatedAt
           publicUserPostsId
+          owner
+        }
+        nextToken
+      }
+      comments {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserCommentsId
+          postCommentsId
           owner
         }
         nextToken
@@ -132,9 +168,24 @@ export const createPost = /* GraphQL */ `
         posts {
           nextToken
         }
+        comments {
+          nextToken
+        }
         createdAt
         updatedAt
         owner
+      }
+      comments {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserCommentsId
+          postCommentsId
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -157,9 +208,24 @@ export const updatePost = /* GraphQL */ `
         posts {
           nextToken
         }
+        comments {
+          nextToken
+        }
         createdAt
         updatedAt
         owner
+      }
+      comments {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserCommentsId
+          postCommentsId
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -182,13 +248,169 @@ export const deletePost = /* GraphQL */ `
         posts {
           nextToken
         }
+        comments {
+          nextToken
+        }
         createdAt
         updatedAt
         owner
       }
+      comments {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserCommentsId
+          postCommentsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       publicUserPostsId
+      owner
+    }
+  }
+`;
+export const createComment = /* GraphQL */ `
+  mutation CreateComment(
+    $input: CreateCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    createComment(input: $input, condition: $condition) {
+      id
+      content
+      user {
+        id
+        username
+        posts {
+          nextToken
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      post {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        publicUserPostsId
+        owner
+      }
+      createdAt
+      updatedAt
+      publicUserCommentsId
+      postCommentsId
+      owner
+    }
+  }
+`;
+export const updateComment = /* GraphQL */ `
+  mutation UpdateComment(
+    $input: UpdateCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    updateComment(input: $input, condition: $condition) {
+      id
+      content
+      user {
+        id
+        username
+        posts {
+          nextToken
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      post {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        publicUserPostsId
+        owner
+      }
+      createdAt
+      updatedAt
+      publicUserCommentsId
+      postCommentsId
+      owner
+    }
+  }
+`;
+export const deleteComment = /* GraphQL */ `
+  mutation DeleteComment(
+    $input: DeleteCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    deleteComment(input: $input, condition: $condition) {
+      id
+      content
+      user {
+        id
+        username
+        posts {
+          nextToken
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      post {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        publicUserPostsId
+        owner
+      }
+      createdAt
+      updatedAt
+      publicUserCommentsId
+      postCommentsId
       owner
     }
   }

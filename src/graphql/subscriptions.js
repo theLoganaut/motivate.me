@@ -17,6 +17,18 @@ export const onCreatePublicUser = /* GraphQL */ `
         }
         nextToken
       }
+      comments {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserCommentsId
+          postCommentsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -39,6 +51,18 @@ export const onUpdatePublicUser = /* GraphQL */ `
         }
         nextToken
       }
+      comments {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserCommentsId
+          postCommentsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -57,6 +81,18 @@ export const onDeletePublicUser = /* GraphQL */ `
           createdAt
           updatedAt
           publicUserPostsId
+          owner
+        }
+        nextToken
+      }
+      comments {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserCommentsId
+          postCommentsId
           owner
         }
         nextToken
@@ -111,9 +147,24 @@ export const onCreatePost = /* GraphQL */ `
         posts {
           nextToken
         }
+        comments {
+          nextToken
+        }
         createdAt
         updatedAt
         owner
+      }
+      comments {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserCommentsId
+          postCommentsId
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -133,9 +184,24 @@ export const onUpdatePost = /* GraphQL */ `
         posts {
           nextToken
         }
+        comments {
+          nextToken
+        }
         createdAt
         updatedAt
         owner
+      }
+      comments {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserCommentsId
+          postCommentsId
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -155,13 +221,160 @@ export const onDeletePost = /* GraphQL */ `
         posts {
           nextToken
         }
+        comments {
+          nextToken
+        }
         createdAt
         updatedAt
         owner
       }
+      comments {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserCommentsId
+          postCommentsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       publicUserPostsId
+      owner
+    }
+  }
+`;
+export const onCreateComment = /* GraphQL */ `
+  subscription OnCreateComment {
+    onCreateComment {
+      id
+      content
+      user {
+        id
+        username
+        posts {
+          nextToken
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      post {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        publicUserPostsId
+        owner
+      }
+      createdAt
+      updatedAt
+      publicUserCommentsId
+      postCommentsId
+      owner
+    }
+  }
+`;
+export const onUpdateComment = /* GraphQL */ `
+  subscription OnUpdateComment {
+    onUpdateComment {
+      id
+      content
+      user {
+        id
+        username
+        posts {
+          nextToken
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      post {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        publicUserPostsId
+        owner
+      }
+      createdAt
+      updatedAt
+      publicUserCommentsId
+      postCommentsId
+      owner
+    }
+  }
+`;
+export const onDeleteComment = /* GraphQL */ `
+  subscription OnDeleteComment {
+    onDeleteComment {
+      id
+      content
+      user {
+        id
+        username
+        posts {
+          nextToken
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      post {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        publicUserPostsId
+        owner
+      }
+      createdAt
+      updatedAt
+      publicUserCommentsId
+      postCommentsId
       owner
     }
   }

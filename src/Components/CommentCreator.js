@@ -1,31 +1,34 @@
 import { useState, useEffect } from "react";
 import { Card, Button, Form } from "react-bootstrap";
-import { createPost } from "../graphql/mutations";
 import { API, graphqlOperation } from "aws-amplify";
 import { v4 as uuidv4 } from "uuid";
+import { createComment } from "../graphql/mutations";
 
-const PostCreator = ({ userID }) => {
-  const [postContent, setPostContent] = useState("");
+const CommentCreator = ({ postId, userId }) => {
+  const [commentContent, setCommentContent] = useState("");
 
-  const submitPost = async (e) => {
+  const submitComment = async (e) => {
     e.persist();
     console.log(e);
-    const postData = {
+    const commentData = {
       id: uuidv4(),
-      content: postContent,
-      publicUserPostsId: userID,
+      content: commentContent,
+      publicUserCommentsId: userId,
+      postCommentsId: postId,
     };
     try {
-      await API.graphql(graphqlOperation(createPost, { input: postData })).then(
-        console.log("test")
-      );
+      await API.graphql(
+        graphqlOperation(createComment, { input: commentData })
+      ).then(console.log("test"));
     } catch (error) {
       console.log("error creating new Post:", error);
     } finally {
-      setPostContent("");
-      console.log(postData, "hit finally");
+      setCommentContent("");
+      console.log(commentData, "hit finally");
     }
   };
+
+  console.log(postId);
 
   return (
     <Card style={{ width: "22rem" }}>
@@ -37,12 +40,12 @@ const PostCreator = ({ userID }) => {
             <Form.Control
               as="textarea"
               rows={3}
-              onChange={(e) => setPostContent(e.target.value)}
-              value={postContent}
+              onChange={(e) => setCommentContent(e.target.value)}
+              value={commentContent}
             />
           </Form.Group>
         </Form>
-        <Button variant="primary" type="submit" onClick={submitPost}>
+        <Button variant="primary" type="submit" onClick={submitComment}>
           {" "}
           Motivate!{" "}
         </Button>
@@ -51,4 +54,4 @@ const PostCreator = ({ userID }) => {
   );
 };
 
-export default PostCreator;
+export default CommentCreator;

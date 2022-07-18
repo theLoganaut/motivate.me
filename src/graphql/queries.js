@@ -17,6 +17,18 @@ export const getPublicUser = /* GraphQL */ `
         }
         nextToken
       }
+      comments {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserCommentsId
+          postCommentsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -34,6 +46,9 @@ export const listPublicUsers = /* GraphQL */ `
         id
         username
         posts {
+          nextToken
+        }
+        comments {
           nextToken
         }
         createdAt
@@ -84,9 +99,24 @@ export const getPost = /* GraphQL */ `
         posts {
           nextToken
         }
+        comments {
+          nextToken
+        }
         createdAt
         updatedAt
         owner
+      }
+      comments {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserCommentsId
+          postCommentsId
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -112,9 +142,125 @@ export const listPosts = /* GraphQL */ `
           updatedAt
           owner
         }
+        comments {
+          nextToken
+        }
         createdAt
         updatedAt
         publicUserPostsId
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+
+export const listPostsWithComments = /* GraphQL */ `
+  query ListPosts(
+    $filter: ModelPostFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        comments {
+          items {
+            content
+            owner
+          }
+        }
+        createdAt
+        updatedAt
+        publicUserPostsId
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+
+export const getComment = /* GraphQL */ `
+  query GetComment($id: ID!) {
+    getComment(id: $id) {
+      id
+      content
+      user {
+        id
+        username
+        posts {
+          nextToken
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      post {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        publicUserPostsId
+        owner
+      }
+      createdAt
+      updatedAt
+      publicUserCommentsId
+      postCommentsId
+      owner
+    }
+  }
+`;
+export const listComments = /* GraphQL */ `
+  query ListComments(
+    $filter: ModelCommentFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        post {
+          id
+          content
+          createdAt
+          updatedAt
+          publicUserPostsId
+          owner
+        }
+        createdAt
+        updatedAt
+        publicUserCommentsId
+        postCommentsId
         owner
       }
       nextToken
