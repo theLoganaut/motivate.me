@@ -1,67 +1,100 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser($username: String) {
-    onCreateUser(username: $username) {
+export const onCreatePublicUser = /* GraphQL */ `
+  subscription OnCreatePublicUser {
+    onCreatePublicUser {
       id
       username
-      email
       posts {
         items {
           id
           content
           createdAt
           updatedAt
-          userPostsId
+          publicUserPostsId
           owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser($username: String) {
-    onUpdateUser(username: $username) {
+export const onUpdatePublicUser = /* GraphQL */ `
+  subscription OnUpdatePublicUser {
+    onUpdatePublicUser {
       id
       username
-      email
       posts {
         items {
           id
           content
           createdAt
           updatedAt
-          userPostsId
+          publicUserPostsId
           owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser($username: String) {
-    onDeleteUser(username: $username) {
+export const onDeletePublicUser = /* GraphQL */ `
+  subscription OnDeletePublicUser {
+    onDeletePublicUser {
       id
       username
-      email
       posts {
         items {
           id
           content
           createdAt
           updatedAt
-          userPostsId
+          publicUserPostsId
           owner
         }
         nextToken
       }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreatePrivateUser = /* GraphQL */ `
+  subscription OnCreatePrivateUser($username: String) {
+    onCreatePrivateUser(username: $username) {
+      id
+      username
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePrivateUser = /* GraphQL */ `
+  subscription OnUpdatePrivateUser($username: String) {
+    onUpdatePrivateUser(username: $username) {
+      id
+      username
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeletePrivateUser = /* GraphQL */ `
+  subscription OnDeletePrivateUser($username: String) {
+    onDeletePrivateUser(username: $username) {
+      id
+      username
+      email
       createdAt
       updatedAt
     }
@@ -75,16 +108,16 @@ export const onCreatePost = /* GraphQL */ `
       user {
         id
         username
-        email
         posts {
           nextToken
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
-      userPostsId
+      publicUserPostsId
       owner
     }
   }
@@ -97,16 +130,16 @@ export const onUpdatePost = /* GraphQL */ `
       user {
         id
         username
-        email
         posts {
           nextToken
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
-      userPostsId
+      publicUserPostsId
       owner
     }
   }
@@ -119,16 +152,16 @@ export const onDeletePost = /* GraphQL */ `
       user {
         id
         username
-        email
         posts {
           nextToken
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
-      userPostsId
+      publicUserPostsId
       owner
     }
   }

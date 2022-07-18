@@ -14,7 +14,7 @@ const PostCreator = ({ userID }) => {
     const postData = {
       id: uuidv4(),
       content: postContent,
-      userPostsId: userID,
+      publicUserPostsId: userID,
     };
     try {
       await API.graphql(graphqlOperation(createPost, { input: postData })).then(

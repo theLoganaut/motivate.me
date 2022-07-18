@@ -3,7 +3,7 @@ export type AmplifyDependentResourcesAttributes = {
         "userPoolGroups": {
             "AdminGroupRole": "string"
         },
-        "motivateme59c8fb3a59c8fb3a": {
+        "motivatemefd7cb0aafd7cb0aa": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
@@ -15,13 +15,12 @@ export type AmplifyDependentResourcesAttributes = {
     },
     "api": {
         "motivateme": {
-            "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }
     },
     "function": {
-        "motivateme59c8fb3a59c8fb3aPostConfirmation": {
+        "motivatemefd7cb0aafd7cb0aaPostConfirmation": {
             "Name": "string",
             "Arn": "string",
             "LambdaExecutionRole": "string",

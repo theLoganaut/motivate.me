@@ -6,7 +6,7 @@
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "motivateme59c8fb3a59c8fb3a",
+          "resourceName": "motivatemefd7cb0aafd7cb0aa",
           "attributes": [
             "UserPoolId",
             "AppClientIDWeb",
@@ -16,13 +16,13 @@
         }
       ]
     },
-    "motivateme59c8fb3a59c8fb3a": {
+    "motivatemefd7cb0aafd7cb0aa": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "motivateme59c8fb3a59c8fb3aPostConfirmation",
+          "resourceName": "motivatemefd7cb0aafd7cb0aaPostConfirmation",
           "triggerProvider": "Cognito",
           "attributes": [
             "Arn",
@@ -60,25 +60,16 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authmotivateme59c8fb3a59c8fb3a"
+              "userPoolId": "authmotivatemefd7cb0aafd7cb0aa"
             }
           },
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "API_KEY",
-              "apiKeyConfig": {
-                "apiKeyExpirationDays": 14,
-                "apiKeyExpirationDate": "2022-07-27T15:56:29.725Z",
-                "description": "july13"
-              }
-            }
-          ]
+          "additionalAuthenticationProviders": []
         }
       }
     }
   },
   "function": {
-    "motivateme59c8fb3a59c8fb3aPostConfirmation": {
+    "motivatemefd7cb0aafd7cb0aaPostConfirmation": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

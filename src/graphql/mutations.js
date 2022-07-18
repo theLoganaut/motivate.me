@@ -1,76 +1,118 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createUser = /* GraphQL */ `
-  mutation CreateUser(
-    $input: CreateUserInput!
-    $condition: ModelUserConditionInput
+export const createPublicUser = /* GraphQL */ `
+  mutation CreatePublicUser(
+    $input: CreatePublicUserInput!
+    $condition: ModelPublicUserConditionInput
   ) {
-    createUser(input: $input, condition: $condition) {
+    createPublicUser(input: $input, condition: $condition) {
       id
       username
-      email
       posts {
         items {
           id
           content
           createdAt
           updatedAt
-          userPostsId
+          publicUserPostsId
           owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const updateUser = /* GraphQL */ `
-  mutation UpdateUser(
-    $input: UpdateUserInput!
-    $condition: ModelUserConditionInput
+export const updatePublicUser = /* GraphQL */ `
+  mutation UpdatePublicUser(
+    $input: UpdatePublicUserInput!
+    $condition: ModelPublicUserConditionInput
   ) {
-    updateUser(input: $input, condition: $condition) {
+    updatePublicUser(input: $input, condition: $condition) {
       id
       username
-      email
       posts {
         items {
           id
           content
           createdAt
           updatedAt
-          userPostsId
+          publicUserPostsId
           owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const deleteUser = /* GraphQL */ `
-  mutation DeleteUser(
-    $input: DeleteUserInput!
-    $condition: ModelUserConditionInput
+export const deletePublicUser = /* GraphQL */ `
+  mutation DeletePublicUser(
+    $input: DeletePublicUserInput!
+    $condition: ModelPublicUserConditionInput
   ) {
-    deleteUser(input: $input, condition: $condition) {
+    deletePublicUser(input: $input, condition: $condition) {
       id
       username
-      email
       posts {
         items {
           id
           content
           createdAt
           updatedAt
-          userPostsId
+          publicUserPostsId
           owner
         }
         nextToken
       }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const createPrivateUser = /* GraphQL */ `
+  mutation CreatePrivateUser(
+    $input: CreatePrivateUserInput!
+    $condition: ModelPrivateUserConditionInput
+  ) {
+    createPrivateUser(input: $input, condition: $condition) {
+      id
+      username
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePrivateUser = /* GraphQL */ `
+  mutation UpdatePrivateUser(
+    $input: UpdatePrivateUserInput!
+    $condition: ModelPrivateUserConditionInput
+  ) {
+    updatePrivateUser(input: $input, condition: $condition) {
+      id
+      username
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePrivateUser = /* GraphQL */ `
+  mutation DeletePrivateUser(
+    $input: DeletePrivateUserInput!
+    $condition: ModelPrivateUserConditionInput
+  ) {
+    deletePrivateUser(input: $input, condition: $condition) {
+      id
+      username
+      email
       createdAt
       updatedAt
     }
@@ -87,16 +129,16 @@ export const createPost = /* GraphQL */ `
       user {
         id
         username
-        email
         posts {
           nextToken
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
-      userPostsId
+      publicUserPostsId
       owner
     }
   }
@@ -112,16 +154,16 @@ export const updatePost = /* GraphQL */ `
       user {
         id
         username
-        email
         posts {
           nextToken
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
-      userPostsId
+      publicUserPostsId
       owner
     }
   }
@@ -137,16 +179,16 @@ export const deletePost = /* GraphQL */ `
       user {
         id
         username
-        email
         posts {
           nextToken
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
-      userPostsId
+      publicUserPostsId
       owner
     }
   }

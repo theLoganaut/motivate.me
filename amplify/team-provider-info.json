@@ -15,12 +15,13 @@
     "categories": {
       "auth": {
         "motivateme93da035e93da035e": {},
-        "motivateme59c8fb3a59c8fb3a": {}
+        "motivatemefd7cb0aafd7cb0aa": {},
+        "userPoolGroups": {}
       },
       "function": {
-        "motivateme59c8fb3a59c8fb3aPostConfirmation": {
+        "motivatemefd7cb0aafd7cb0aaPostConfirmation": {
           "deploymentBucketName": "amplify-motivateme-dev-114726-deployment",
-          "s3Key": "amplify-builds/motivateme59c8fb3a59c8fb3aPostConfirmation-4f36516e4f78396c5650-build.zip"
+          "s3Key": "amplify-builds/motivatemefd7cb0aafd7cb0aaPostConfirmation-4e6b6d4b585061395235-build.zip"
         }
       }
     }

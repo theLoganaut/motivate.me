@@ -1,42 +1,71 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getUser = /* GraphQL */ `
-  query GetUser($id: ID!) {
-    getUser(id: $id) {
+export const getPublicUser = /* GraphQL */ `
+  query GetPublicUser($id: ID!) {
+    getPublicUser(id: $id) {
       id
       username
-      email
       posts {
         items {
           id
           content
           createdAt
           updatedAt
-          userPostsId
+          publicUserPostsId
           owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const listUsers = /* GraphQL */ `
-  query ListUsers(
-    $filter: ModelUserFilterInput
+export const listPublicUsers = /* GraphQL */ `
+  query ListPublicUsers(
+    $filter: ModelPublicUserFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPublicUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        username
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getPrivateUser = /* GraphQL */ `
+  query GetPrivateUser($id: ID!) {
+    getPrivateUser(id: $id) {
+      id
+      username
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listPrivateUsers = /* GraphQL */ `
+  query ListPrivateUsers(
+    $filter: ModelPrivateUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPrivateUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         username
         email
-        posts {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -52,16 +81,16 @@ export const getPost = /* GraphQL */ `
       user {
         id
         username
-        email
         posts {
           nextToken
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
-      userPostsId
+      publicUserPostsId
       owner
     }
   }
@@ -79,13 +108,13 @@ export const listPosts = /* GraphQL */ `
         user {
           id
           username
-          email
           createdAt
           updatedAt
+          owner
         }
         createdAt
         updatedAt
-        userPostsId
+        publicUserPostsId
         owner
       }
       nextToken
