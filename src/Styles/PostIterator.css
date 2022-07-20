@@ -1,0 +1,15 @@
+.expand-container {
+  overflow: hidden;
+}
+
+.expand-contract {
+  border-bottom: 1px solid skyblue;
+  margin-top: -100%;
+  transition: all 1s;
+}
+
+.expand-contract.expanded {
+  background-color: lightblue;
+  margin-top: 0;
+}
+

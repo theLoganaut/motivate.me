@@ -1,41 +1,56 @@
 import { useState } from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Col, Row, ButtonGroup } from "react-bootstrap";
 import CommentCreator from "./CommentCreator";
+import Boost from "./Boost";
+import "../Styles/PostIterator.css";
 
 const PostIterator = ({ posts, userId }) => {
   const postList = posts;
-
-  const [showPostCreator, setShowPostCreator] = useState(false);
-
-  const showCommentCreator = () => {
-    setShowPostCreator((showPostCreator) => !showPostCreator);
-  };
 
   return (
     <div>
       {postList.map((post) => {
         return (
-          <Card style={{ marginRight: "1em", background: "#dee2e6" }}>
-            <Card.Body>{post.content}</Card.Body>
-            <Button style={{ maxWidth: "10em" }} onClick={showCommentCreator}>
-              Comment Motivation
-            </Button>
+          <Card
+            style={{
+              marginRight: "1em",
+              background: "#dee2e6",
+              display: "flex",
+            }}
+          >
+            <Boost post={post} userId={userId} username={post.owner} />
+
             {post.comments.items.map((comment) => {
               return (
                 <>
-                  {showPostCreator ? (
-                    <CommentCreator postId={post.id} userId={userId} />
-                  ) : (
-                    <Card
-                      style={{
-                        marginRight: "3em",
-                        marginLeft: "3em",
-                        background: "#dee2e6",
-                      }}
-                    >
-                      <Card.Body>{comment.content}</Card.Body>
-                    </Card>
-                  )}
+                  <Card
+                    style={{
+                      marginRight: "2em",
+                      marginLeft: "2em",
+                      background: "#dee2e6",
+                      display: "flex",
+                    }}
+                  >
+                    <Row>
+                      <Col>
+                        <Card.Text>{comment.content}</Card.Text>
+                        <Card.Subtitle>{comment.owner}</Card.Subtitle>
+                      </Col>
+                      <Col>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                          }}
+                        >
+                          <ButtonGroup vertical>
+                            <Button variant="success">Yum!</Button>
+                            <Button variant="danger">Yuck!</Button>
+                          </ButtonGroup>
+                        </div>
+                      </Col>
+                    </Row>
+                  </Card>
                 </>
               );
             })}
