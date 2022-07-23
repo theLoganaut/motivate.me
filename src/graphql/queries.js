@@ -1,30 +1,317 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getBoost = /* GraphQL */ `
+  query GetBoost($id: ID!) {
+    getBoost(id: $id) {
+      id
+      content
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      motive {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        boosts {
+          nextToken
+        }
+        complete
+        following {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        publicUserMotivesId
+        owner
+      }
+      yays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostYaysId
+          publicUserYaysId
+          owner
+        }
+        nextToken
+      }
+      nays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostNaysId
+          publicUserNaysId
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      motiveBoostsId
+      publicUserBoostsId
+      owner
+    }
+  }
+`;
+export const listBoosts = /* GraphQL */ `
+  query ListBoosts(
+    $filter: ModelBoostFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBoosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        motive {
+          id
+          content
+          complete
+          createdAt
+          updatedAt
+          publicUserMotivesId
+          owner
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        motiveBoostsId
+        publicUserBoostsId
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getMotive = /* GraphQL */ `
+  query GetMotive($id: ID!) {
+    getMotive(id: $id) {
+      id
+      content
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      boosts {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          motiveBoostsId
+          publicUserBoostsId
+          owner
+        }
+        nextToken
+      }
+      complete
+      following {
+        items {
+          id
+          timer
+          createdAt
+          updatedAt
+          motiveFollowingId
+          publicUserFollowedId
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      publicUserMotivesId
+      owner
+    }
+  }
+`;
+export const listMotives = /* GraphQL */ `
+  query ListMotives(
+    $filter: ModelMotiveFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMotives(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        boosts {
+          nextToken
+        }
+        complete
+        following {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        publicUserMotivesId
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+
+export const homeMotiveList = /* GraphQL */ `
+  query ListMotives(
+    $filter: ModelMotiveFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMotives(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        content
+        complete
+        createdAt
+        boosts {
+          items {
+            content
+            yays {
+              items {
+                boostYaysId
+                owner
+              }
+            }
+            nays {
+              items {
+                boostNaysId
+                owner
+              }
+            }
+            owner
+            publicUserBoostsId
+          }
+        }
+        id
+        owner
+        publicUserMotivesId
+      }
+    }
+  }
+`;
+
 export const getPublicUser = /* GraphQL */ `
   query GetPublicUser($id: ID!) {
     getPublicUser(id: $id) {
       id
       username
-      posts {
+      motives {
         items {
           id
           content
+          complete
           createdAt
           updatedAt
-          publicUserPostsId
+          publicUserMotivesId
           owner
         }
         nextToken
       }
-      comments {
+      boosts {
         items {
           id
           content
           createdAt
           updatedAt
-          publicUserCommentsId
-          postCommentsId
+          motiveBoostsId
+          publicUserBoostsId
+          owner
+        }
+        nextToken
+      }
+      followed {
+        items {
+          id
+          timer
+          createdAt
+          updatedAt
+          motiveFollowingId
+          publicUserFollowedId
+          owner
+        }
+        nextToken
+      }
+      yays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostYaysId
+          publicUserYaysId
+          owner
+        }
+        nextToken
+      }
+      nays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostNaysId
+          publicUserNaysId
           owner
         }
         nextToken
@@ -45,10 +332,19 @@ export const listPublicUsers = /* GraphQL */ `
       items {
         id
         username
-        posts {
+        motives {
           nextToken
         }
-        comments {
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
           nextToken
         }
         createdAt
@@ -59,82 +355,72 @@ export const listPublicUsers = /* GraphQL */ `
     }
   }
 `;
-export const getPrivateUser = /* GraphQL */ `
-  query GetPrivateUser($id: ID!) {
-    getPrivateUser(id: $id) {
+export const getFollow = /* GraphQL */ `
+  query GetFollow($id: ID!) {
+    getFollow(id: $id) {
       id
-      username
-      email
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listPrivateUsers = /* GraphQL */ `
-  query ListPrivateUsers(
-    $filter: ModelPrivateUserFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPrivateUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        username
-        email
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getPost = /* GraphQL */ `
-  query GetPost($id: ID!) {
-    getPost(id: $id) {
-      id
-      content
       user {
         id
         username
-        posts {
+        motives {
           nextToken
         }
-        comments {
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
           nextToken
         }
         createdAt
         updatedAt
         owner
       }
-      comments {
-        items {
+      motive {
+        id
+        content
+        user {
           id
-          content
+          username
           createdAt
           updatedAt
-          publicUserCommentsId
-          postCommentsId
           owner
         }
-        nextToken
+        boosts {
+          nextToken
+        }
+        complete
+        following {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        publicUserMotivesId
+        owner
       }
+      timer
       createdAt
       updatedAt
-      publicUserPostsId
+      motiveFollowingId
+      publicUserFollowedId
       owner
     }
   }
 `;
-export const listPosts = /* GraphQL */ `
-  query ListPosts(
-    $filter: ModelPostFilterInput
+export const listFollows = /* GraphQL */ `
+  query ListFollows(
+    $filter: ModelFollowFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listFollows(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        content
         user {
           id
           username
@@ -142,71 +428,53 @@ export const listPosts = /* GraphQL */ `
           updatedAt
           owner
         }
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        publicUserPostsId
-        owner
-      }
-      nextToken
-    }
-  }
-`;
-
-export const listPostsWithComments = /* GraphQL */ `
-  query ListPosts(
-    $filter: ModelPostFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        content
-        user {
+        motive {
           id
-          username
+          content
+          complete
           createdAt
           updatedAt
+          publicUserMotivesId
           owner
         }
-        comments {
-          items {
-            content
-            owner
-          }
-        }
+        timer
         createdAt
         updatedAt
-        publicUserPostsId
+        motiveFollowingId
+        publicUserFollowedId
         owner
       }
       nextToken
     }
   }
 `;
-
-export const getComment = /* GraphQL */ `
-  query GetComment($id: ID!) {
-    getComment(id: $id) {
+export const getYay = /* GraphQL */ `
+  query GetYay($id: ID!) {
+    getYay(id: $id) {
       id
-      content
       user {
         id
         username
-        posts {
+        motives {
           nextToken
         }
-        comments {
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
           nextToken
         }
         createdAt
         updatedAt
         owner
       }
-      post {
+      boost {
         id
         content
         user {
@@ -216,30 +484,97 @@ export const getComment = /* GraphQL */ `
           updatedAt
           owner
         }
-        comments {
+        motive {
+          id
+          content
+          complete
+          createdAt
+          updatedAt
+          publicUserMotivesId
+          owner
+        }
+        yays {
+          nextToken
+        }
+        nays {
           nextToken
         }
         createdAt
         updatedAt
-        publicUserPostsId
+        motiveBoostsId
+        publicUserBoostsId
         owner
       }
       createdAt
       updatedAt
-      publicUserCommentsId
-      postCommentsId
+      boostYaysId
+      publicUserYaysId
       owner
     }
   }
 `;
-export const listComments = /* GraphQL */ `
-  query ListComments(
-    $filter: ModelCommentFilterInput
+export const listYays = /* GraphQL */ `
+  query ListYays(
+    $filter: ModelYayFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listYays(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
+        id
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        boost {
+          id
+          content
+          createdAt
+          updatedAt
+          motiveBoostsId
+          publicUserBoostsId
+          owner
+        }
+        createdAt
+        updatedAt
+        boostYaysId
+        publicUserYaysId
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getNay = /* GraphQL */ `
+  query GetNay($id: ID!) {
+    getNay(id: $id) {
+      id
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      boost {
         id
         content
         user {
@@ -249,18 +584,64 @@ export const listComments = /* GraphQL */ `
           updatedAt
           owner
         }
-        post {
+        motive {
+          id
+          content
+          complete
+          createdAt
+          updatedAt
+          publicUserMotivesId
+          owner
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        motiveBoostsId
+        publicUserBoostsId
+        owner
+      }
+      createdAt
+      updatedAt
+      boostNaysId
+      publicUserNaysId
+      owner
+    }
+  }
+`;
+export const listNays = /* GraphQL */ `
+  query ListNays(
+    $filter: ModelNayFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listNays(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        boost {
           id
           content
           createdAt
           updatedAt
-          publicUserPostsId
+          motiveBoostsId
+          publicUserBoostsId
           owner
         }
         createdAt
         updatedAt
-        publicUserCommentsId
-        postCommentsId
+        boostNaysId
+        publicUserNaysId
         owner
       }
       nextToken

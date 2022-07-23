@@ -1,5 +1,5 @@
 import { API, graphqlOperation } from "aws-amplify";
-import { createPost, createComment } from "../graphql/mutations";
+// import { createPost, createComment } from "../graphql/mutations";
 import { v4 as uuidv4 } from "uuid";
 
 const CreateMotive = async (content, userID) => {

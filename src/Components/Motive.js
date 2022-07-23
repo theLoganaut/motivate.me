@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Col, Button, Card, Form } from "react-bootstrap";
 import { CreateBoost } from "../Controllers/Create";
+import BoostCreator from "./BoostCreator";
 
-const Boost = ({ post, userId, username }) => {
+const Motive = ({ motive, userId, username }) => {
   const [showBoostCreator, setShowBoostCreator] = useState(false);
 
   const expandContractBoost = () => {
@@ -13,7 +14,7 @@ const Boost = ({ post, userId, username }) => {
 
   const submitBoost = async (e) => {
     e.persist();
-    CreateBoost(boostContent, userId, post.id);
+    CreateBoost(boostContent, userId, motive.id);
     expandContractBoost();
     setBoostcontent("");
   };
@@ -22,7 +23,7 @@ const Boost = ({ post, userId, username }) => {
     <div>
       <Col style={{ display: "flex" }}>
         <Card.Subtitle>{username}</Card.Subtitle>
-        <Card.Body>{post.content} </Card.Body>
+        <Card.Body>{motive.content} </Card.Body>
         <Button size="sm" onClick={expandContractBoost}>
           {showBoostCreator ? <>⬆</> : <>⬇</>}
         </Button>
@@ -35,30 +36,15 @@ const Boost = ({ post, userId, username }) => {
               : "expand-contract collapsed"
           }
         >
-          <Form>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Control
-                as="textarea"
-                rows={3}
-                onChange={(e) => setBoostcontent(e.target.value)}
-                value={boostContent}
-                placeholder="Remember to be positive, contructive and uplifting!"
-              />
-            </Form.Group>
-          </Form>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button variant="primary" type="submit" onClick={submitBoost}>
-              {" "}
-              Boost!{" "}
-            </Button>
-          </div>
+          <BoostCreator
+            motiveId={motive.id}
+            userId={userId}
+            submitBoost={submitBoost}
+          />
         </Card.Body>
       </div>
     </div>
   );
 };
 
-export default Boost;
+export default Motive;

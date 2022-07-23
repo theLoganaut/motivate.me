@@ -1,30 +1,479 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateBoost = /* GraphQL */ `
+  subscription OnCreateBoost {
+    onCreateBoost {
+      id
+      content
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      motive {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        boosts {
+          nextToken
+        }
+        complete
+        following {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        publicUserMotivesId
+        owner
+      }
+      yays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostYaysId
+          publicUserYaysId
+          owner
+        }
+        nextToken
+      }
+      nays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostNaysId
+          publicUserNaysId
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      motiveBoostsId
+      publicUserBoostsId
+      owner
+    }
+  }
+`;
+export const onUpdateBoost = /* GraphQL */ `
+  subscription OnUpdateBoost {
+    onUpdateBoost {
+      id
+      content
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      motive {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        boosts {
+          nextToken
+        }
+        complete
+        following {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        publicUserMotivesId
+        owner
+      }
+      yays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostYaysId
+          publicUserYaysId
+          owner
+        }
+        nextToken
+      }
+      nays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostNaysId
+          publicUserNaysId
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      motiveBoostsId
+      publicUserBoostsId
+      owner
+    }
+  }
+`;
+export const onDeleteBoost = /* GraphQL */ `
+  subscription OnDeleteBoost {
+    onDeleteBoost {
+      id
+      content
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      motive {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        boosts {
+          nextToken
+        }
+        complete
+        following {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        publicUserMotivesId
+        owner
+      }
+      yays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostYaysId
+          publicUserYaysId
+          owner
+        }
+        nextToken
+      }
+      nays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostNaysId
+          publicUserNaysId
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      motiveBoostsId
+      publicUserBoostsId
+      owner
+    }
+  }
+`;
+export const onCreateMotive = /* GraphQL */ `
+  subscription OnCreateMotive {
+    onCreateMotive {
+      id
+      content
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      boosts {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          motiveBoostsId
+          publicUserBoostsId
+          owner
+        }
+        nextToken
+      }
+      complete
+      following {
+        items {
+          id
+          timer
+          createdAt
+          updatedAt
+          motiveFollowingId
+          publicUserFollowedId
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      publicUserMotivesId
+      owner
+    }
+  }
+`;
+export const onUpdateMotive = /* GraphQL */ `
+  subscription OnUpdateMotive {
+    onUpdateMotive {
+      id
+      content
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      boosts {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          motiveBoostsId
+          publicUserBoostsId
+          owner
+        }
+        nextToken
+      }
+      complete
+      following {
+        items {
+          id
+          timer
+          createdAt
+          updatedAt
+          motiveFollowingId
+          publicUserFollowedId
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      publicUserMotivesId
+      owner
+    }
+  }
+`;
+export const onDeleteMotive = /* GraphQL */ `
+  subscription OnDeleteMotive {
+    onDeleteMotive {
+      id
+      content
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      boosts {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          motiveBoostsId
+          publicUserBoostsId
+          owner
+        }
+        nextToken
+      }
+      complete
+      following {
+        items {
+          id
+          timer
+          createdAt
+          updatedAt
+          motiveFollowingId
+          publicUserFollowedId
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      publicUserMotivesId
+      owner
+    }
+  }
+`;
 export const onCreatePublicUser = /* GraphQL */ `
   subscription OnCreatePublicUser {
     onCreatePublicUser {
       id
       username
-      posts {
+      motives {
         items {
           id
           content
+          complete
           createdAt
           updatedAt
-          publicUserPostsId
+          publicUserMotivesId
           owner
         }
         nextToken
       }
-      comments {
+      boosts {
         items {
           id
           content
           createdAt
           updatedAt
-          publicUserCommentsId
-          postCommentsId
+          motiveBoostsId
+          publicUserBoostsId
+          owner
+        }
+        nextToken
+      }
+      followed {
+        items {
+          id
+          timer
+          createdAt
+          updatedAt
+          motiveFollowingId
+          publicUserFollowedId
+          owner
+        }
+        nextToken
+      }
+      yays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostYaysId
+          publicUserYaysId
+          owner
+        }
+        nextToken
+      }
+      nays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostNaysId
+          publicUserNaysId
           owner
         }
         nextToken
@@ -40,25 +489,60 @@ export const onUpdatePublicUser = /* GraphQL */ `
     onUpdatePublicUser {
       id
       username
-      posts {
+      motives {
         items {
           id
           content
+          complete
           createdAt
           updatedAt
-          publicUserPostsId
+          publicUserMotivesId
           owner
         }
         nextToken
       }
-      comments {
+      boosts {
         items {
           id
           content
           createdAt
           updatedAt
-          publicUserCommentsId
-          postCommentsId
+          motiveBoostsId
+          publicUserBoostsId
+          owner
+        }
+        nextToken
+      }
+      followed {
+        items {
+          id
+          timer
+          createdAt
+          updatedAt
+          motiveFollowingId
+          publicUserFollowedId
+          owner
+        }
+        nextToken
+      }
+      yays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostYaysId
+          publicUserYaysId
+          owner
+        }
+        nextToken
+      }
+      nays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostNaysId
+          publicUserNaysId
           owner
         }
         nextToken
@@ -74,25 +558,60 @@ export const onDeletePublicUser = /* GraphQL */ `
     onDeletePublicUser {
       id
       username
-      posts {
+      motives {
         items {
           id
           content
+          complete
           createdAt
           updatedAt
-          publicUserPostsId
+          publicUserMotivesId
           owner
         }
         nextToken
       }
-      comments {
+      boosts {
         items {
           id
           content
           createdAt
           updatedAt
-          publicUserCommentsId
-          postCommentsId
+          motiveBoostsId
+          publicUserBoostsId
+          owner
+        }
+        nextToken
+      }
+      followed {
+        items {
+          id
+          timer
+          createdAt
+          updatedAt
+          motiveFollowingId
+          publicUserFollowedId
+          owner
+        }
+        nextToken
+      }
+      yays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostYaysId
+          publicUserYaysId
+          owner
+        }
+        nextToken
+      }
+      nays {
+        items {
+          id
+          createdAt
+          updatedAt
+          boostNaysId
+          publicUserNaysId
           owner
         }
         nextToken
@@ -103,169 +622,33 @@ export const onDeletePublicUser = /* GraphQL */ `
     }
   }
 `;
-export const onCreatePrivateUser = /* GraphQL */ `
-  subscription OnCreatePrivateUser($username: String) {
-    onCreatePrivateUser(username: $username) {
+export const onCreateFollow = /* GraphQL */ `
+  subscription OnCreateFollow {
+    onCreateFollow {
       id
-      username
-      email
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdatePrivateUser = /* GraphQL */ `
-  subscription OnUpdatePrivateUser($username: String) {
-    onUpdatePrivateUser(username: $username) {
-      id
-      username
-      email
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeletePrivateUser = /* GraphQL */ `
-  subscription OnDeletePrivateUser($username: String) {
-    onDeletePrivateUser(username: $username) {
-      id
-      username
-      email
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost {
-    onCreatePost {
-      id
-      content
       user {
         id
         username
-        posts {
+        motives {
           nextToken
         }
-        comments {
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
           nextToken
         }
         createdAt
         updatedAt
         owner
       }
-      comments {
-        items {
-          id
-          content
-          createdAt
-          updatedAt
-          publicUserCommentsId
-          postCommentsId
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      publicUserPostsId
-      owner
-    }
-  }
-`;
-export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost {
-    onUpdatePost {
-      id
-      content
-      user {
-        id
-        username
-        posts {
-          nextToken
-        }
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      comments {
-        items {
-          id
-          content
-          createdAt
-          updatedAt
-          publicUserCommentsId
-          postCommentsId
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      publicUserPostsId
-      owner
-    }
-  }
-`;
-export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost {
-    onDeletePost {
-      id
-      content
-      user {
-        id
-        username
-        posts {
-          nextToken
-        }
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      comments {
-        items {
-          id
-          content
-          createdAt
-          updatedAt
-          publicUserCommentsId
-          postCommentsId
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      publicUserPostsId
-      owner
-    }
-  }
-`;
-export const onCreateComment = /* GraphQL */ `
-  subscription OnCreateComment {
-    onCreateComment {
-      id
-      content
-      user {
-        id
-        username
-        posts {
-          nextToken
-        }
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      post {
+      motive {
         id
         content
         user {
@@ -275,41 +658,54 @@ export const onCreateComment = /* GraphQL */ `
           updatedAt
           owner
         }
-        comments {
+        boosts {
+          nextToken
+        }
+        complete
+        following {
           nextToken
         }
         createdAt
         updatedAt
-        publicUserPostsId
+        publicUserMotivesId
         owner
       }
+      timer
       createdAt
       updatedAt
-      publicUserCommentsId
-      postCommentsId
+      motiveFollowingId
+      publicUserFollowedId
       owner
     }
   }
 `;
-export const onUpdateComment = /* GraphQL */ `
-  subscription OnUpdateComment {
-    onUpdateComment {
+export const onUpdateFollow = /* GraphQL */ `
+  subscription OnUpdateFollow {
+    onUpdateFollow {
       id
-      content
       user {
         id
         username
-        posts {
+        motives {
           nextToken
         }
-        comments {
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
           nextToken
         }
         createdAt
         updatedAt
         owner
       }
-      post {
+      motive {
         id
         content
         user {
@@ -319,41 +715,54 @@ export const onUpdateComment = /* GraphQL */ `
           updatedAt
           owner
         }
-        comments {
+        boosts {
+          nextToken
+        }
+        complete
+        following {
           nextToken
         }
         createdAt
         updatedAt
-        publicUserPostsId
+        publicUserMotivesId
         owner
       }
+      timer
       createdAt
       updatedAt
-      publicUserCommentsId
-      postCommentsId
+      motiveFollowingId
+      publicUserFollowedId
       owner
     }
   }
 `;
-export const onDeleteComment = /* GraphQL */ `
-  subscription OnDeleteComment {
-    onDeleteComment {
+export const onDeleteFollow = /* GraphQL */ `
+  subscription OnDeleteFollow {
+    onDeleteFollow {
       id
-      content
       user {
         id
         username
-        posts {
+        motives {
           nextToken
         }
-        comments {
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
           nextToken
         }
         createdAt
         updatedAt
         owner
       }
-      post {
+      motive {
         id
         content
         user {
@@ -363,18 +772,413 @@ export const onDeleteComment = /* GraphQL */ `
           updatedAt
           owner
         }
-        comments {
+        boosts {
+          nextToken
+        }
+        complete
+        following {
           nextToken
         }
         createdAt
         updatedAt
-        publicUserPostsId
+        publicUserMotivesId
+        owner
+      }
+      timer
+      createdAt
+      updatedAt
+      motiveFollowingId
+      publicUserFollowedId
+      owner
+    }
+  }
+`;
+export const onCreateYay = /* GraphQL */ `
+  subscription OnCreateYay {
+    onCreateYay {
+      id
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      boost {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        motive {
+          id
+          content
+          complete
+          createdAt
+          updatedAt
+          publicUserMotivesId
+          owner
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        motiveBoostsId
+        publicUserBoostsId
         owner
       }
       createdAt
       updatedAt
-      publicUserCommentsId
-      postCommentsId
+      boostYaysId
+      publicUserYaysId
+      owner
+    }
+  }
+`;
+export const onUpdateYay = /* GraphQL */ `
+  subscription OnUpdateYay {
+    onUpdateYay {
+      id
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      boost {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        motive {
+          id
+          content
+          complete
+          createdAt
+          updatedAt
+          publicUserMotivesId
+          owner
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        motiveBoostsId
+        publicUserBoostsId
+        owner
+      }
+      createdAt
+      updatedAt
+      boostYaysId
+      publicUserYaysId
+      owner
+    }
+  }
+`;
+export const onDeleteYay = /* GraphQL */ `
+  subscription OnDeleteYay {
+    onDeleteYay {
+      id
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      boost {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        motive {
+          id
+          content
+          complete
+          createdAt
+          updatedAt
+          publicUserMotivesId
+          owner
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        motiveBoostsId
+        publicUserBoostsId
+        owner
+      }
+      createdAt
+      updatedAt
+      boostYaysId
+      publicUserYaysId
+      owner
+    }
+  }
+`;
+export const onCreateNay = /* GraphQL */ `
+  subscription OnCreateNay {
+    onCreateNay {
+      id
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      boost {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        motive {
+          id
+          content
+          complete
+          createdAt
+          updatedAt
+          publicUserMotivesId
+          owner
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        motiveBoostsId
+        publicUserBoostsId
+        owner
+      }
+      createdAt
+      updatedAt
+      boostNaysId
+      publicUserNaysId
+      owner
+    }
+  }
+`;
+export const onUpdateNay = /* GraphQL */ `
+  subscription OnUpdateNay {
+    onUpdateNay {
+      id
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      boost {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        motive {
+          id
+          content
+          complete
+          createdAt
+          updatedAt
+          publicUserMotivesId
+          owner
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        motiveBoostsId
+        publicUserBoostsId
+        owner
+      }
+      createdAt
+      updatedAt
+      boostNaysId
+      publicUserNaysId
+      owner
+    }
+  }
+`;
+export const onDeleteNay = /* GraphQL */ `
+  subscription OnDeleteNay {
+    onDeleteNay {
+      id
+      user {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      boost {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        motive {
+          id
+          content
+          complete
+          createdAt
+          updatedAt
+          publicUserMotivesId
+          owner
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        motiveBoostsId
+        publicUserBoostsId
+        owner
+      }
+      createdAt
+      updatedAt
+      boostNaysId
+      publicUserNaysId
       owner
     }
   }

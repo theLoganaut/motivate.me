@@ -1,25 +1,24 @@
 import { withAuthenticator } from "@aws-amplify/ui-react";
-import PostCreator from "../Components/PostCreator";
+import MotiveCreator from "../Components/MotiveCreator";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { listPostsWithComments } from "../graphql/queries";
-import PostIterator from "../Components/PostIterator";
+import { homeMotiveList } from "../graphql/queries";
+import MotiveIterator from "../Components/MotiveIterator";
 import Sidebar from "../Components/Sidebar";
 import Explore from "../Components/Explore";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Styles/Home.css";
 
 function App({ signOut, user }) {
-  const [posts, setPosts] = useState([]);
+  const [motives, setMotives] = useState([]);
 
   useEffect(() => {
     const getRecentPosts = async () => {
       try {
-        const posts = await API.graphql(
-          graphqlOperation(listPostsWithComments)
-        );
-        setPosts(posts.data.listPosts.items);
+        const motives = await API.graphql(graphqlOperation(homeMotiveList));
+        console.log(motives);
+        setMotives(motives.data.listMotives.items);
       } catch (e) {
         console.log(e);
       }
@@ -38,8 +37,8 @@ function App({ signOut, user }) {
         <Col style={{ minWidth: "40%" }}>
           {/* motives & boosts */}
           {/* <button onClick={() => console.log(posts)}>test</button> */}
-          <PostCreator userID={user.attributes.sub} />
-          <PostIterator posts={posts} userId={user.attributes.sub} />
+          <MotiveCreator userID={user.attributes.sub} />
+          <MotiveIterator motives={motives} userId={user.attributes.sub} />
         </Col>
         <Col>
           <Explore />

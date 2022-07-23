@@ -1,17 +1,14 @@
 import { useState, useEffect } from "react";
 import { Card, Button, Form } from "react-bootstrap";
-import { createPost } from "../graphql/mutations";
-import { API, graphqlOperation } from "aws-amplify";
-import { v4 as uuidv4 } from "uuid";
 import { CreateMotive } from "../Controllers/Create";
 
 const PostCreator = ({ userID }) => {
-  const [postContent, setPostContent] = useState("");
+  const [motiveContent, setMotiveContent] = useState("");
 
   const submitMotive = (e) => {
     e.persist();
-    CreateMotive(postContent, userID);
-    setPostContent("");
+    CreateMotive(motiveContent, userID);
+    setMotiveContent("");
   };
 
   return (
@@ -24,8 +21,8 @@ const PostCreator = ({ userID }) => {
             <Form.Control
               as="textarea"
               rows={3}
-              onChange={(e) => setPostContent(e.target.value)}
-              value={postContent}
+              onChange={(e) => setMotiveContent(e.target.value)}
+              value={motiveContent}
               placeholder="What do you need a boost on today?"
             />
           </Form.Group>
