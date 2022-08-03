@@ -45,8 +45,16 @@ export const getBoost = /* GraphQL */ `
         following {
           nextToken
         }
+        tag {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
         createdAt
         updatedAt
+        tagMotivesId
         publicUserMotivesId
         owner
       }
@@ -103,6 +111,7 @@ export const listBoosts = /* GraphQL */ `
           complete
           createdAt
           updatedAt
+          tagMotivesId
           publicUserMotivesId
           owner
         }
@@ -174,8 +183,19 @@ export const getMotive = /* GraphQL */ `
         }
         nextToken
       }
+      tag {
+        id
+        name
+        motives {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
+      tagMotivesId
       publicUserMotivesId
       owner
     }
@@ -205,8 +225,16 @@ export const listMotives = /* GraphQL */ `
         following {
           nextToken
         }
+        tag {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
         createdAt
         updatedAt
+        tagMotivesId
         publicUserMotivesId
         owner
       }
@@ -214,45 +242,51 @@ export const listMotives = /* GraphQL */ `
     }
   }
 `;
-
-export const homeMotiveList = /* GraphQL */ `
-  query ListMotives(
-    $filter: ModelMotiveFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listMotives(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        content
-        complete
-        createdAt
-        boosts {
-          items {
-            content
-            yays {
-              items {
-                boostYaysId
-                owner
-              }
-            }
-            nays {
-              items {
-                boostNaysId
-                owner
-              }
-            }
-            owner
-            publicUserBoostsId
-          }
+export const getTag = /* GraphQL */ `
+  query GetTag($id: ID!) {
+    getTag(id: $id) {
+      id
+      name
+      motives {
+        items {
+          id
+          content
+          complete
+          createdAt
+          updatedAt
+          tagMotivesId
+          publicUserMotivesId
+          owner
         }
-        id
-        owner
-        publicUserMotivesId
+        nextToken
       }
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;
-
+export const listTags = /* GraphQL */ `
+  query ListTags(
+    $filter: ModelTagFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        motives {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const getPublicUser = /* GraphQL */ `
   query GetPublicUser($id: ID!) {
     getPublicUser(id: $id) {
@@ -265,6 +299,7 @@ export const getPublicUser = /* GraphQL */ `
           complete
           createdAt
           updatedAt
+          tagMotivesId
           publicUserMotivesId
           owner
         }
@@ -355,6 +390,37 @@ export const listPublicUsers = /* GraphQL */ `
     }
   }
 `;
+export const getPrivateUser = /* GraphQL */ `
+  query GetPrivateUser($id: ID!) {
+    getPrivateUser(id: $id) {
+      id
+      username
+      email
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listPrivateUsers = /* GraphQL */ `
+  query ListPrivateUsers(
+    $filter: ModelPrivateUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPrivateUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        username
+        email
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const getFollow = /* GraphQL */ `
   query GetFollow($id: ID!) {
     getFollow(id: $id) {
@@ -398,8 +464,16 @@ export const getFollow = /* GraphQL */ `
         following {
           nextToken
         }
+        tag {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
         createdAt
         updatedAt
+        tagMotivesId
         publicUserMotivesId
         owner
       }
@@ -434,6 +508,7 @@ export const listFollows = /* GraphQL */ `
           complete
           createdAt
           updatedAt
+          tagMotivesId
           publicUserMotivesId
           owner
         }
@@ -490,6 +565,7 @@ export const getYay = /* GraphQL */ `
           complete
           createdAt
           updatedAt
+          tagMotivesId
           publicUserMotivesId
           owner
         }
@@ -590,6 +666,7 @@ export const getNay = /* GraphQL */ `
           complete
           createdAt
           updatedAt
+          tagMotivesId
           publicUserMotivesId
           owner
         }
@@ -643,6 +720,238 @@ export const listNays = /* GraphQL */ `
         boostNaysId
         publicUserNaysId
         owner
+      }
+      nextToken
+    }
+  }
+`;
+export const tagsByName = /* GraphQL */ `
+  query TagsByName(
+    $name: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelTagFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    tagsByName(
+      name: $name
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        motives {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const userByUsername = /* GraphQL */ `
+  query UserByUsername(
+    $username: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelPublicUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByUsername(
+      username: $username
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        username
+        motives {
+          nextToken
+        }
+        boosts {
+          nextToken
+        }
+        followed {
+          nextToken
+        }
+        yays {
+          nextToken
+        }
+        nays {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const listHomeMotives = /* GraphQL */ `
+  query ListMotives(
+    $filter: ModelMotiveFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMotives(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        content
+        user {
+          id
+          username
+          createdAt
+          updatedAt
+          owner
+        }
+        boosts {
+          items {
+            id
+            owner
+            content
+            yays {
+              items {
+                id
+                publicUserYaysId
+              }
+            }
+            nays {
+              items {
+                id
+                publicUserNaysId
+              }
+            }
+          }
+        }
+        complete
+        following {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        publicUserMotivesId
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const allMotivesWithTag = /* GraphQL */ `
+  query TagsByName(
+    $name: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelTagFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    tagsByName(
+      name: $name
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        name
+        motives {
+          items {
+            content
+            owner
+            boosts {
+              items {
+                content
+                owner
+                yays {
+                  items {
+                    owner
+                  }
+                }
+                nays {
+                  items {
+                    owner
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const profilePageQuery = /* GraphQL */ `
+  query UserByUsername(
+    $username: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelPublicUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByUsername(
+      username: $username
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        boosts {
+          items {
+            motive {
+              content
+              owner
+              boosts {
+                items {
+                  content
+                  owner
+                  yays {
+                    items {
+                      owner
+                    }
+                  }
+                  nays {
+                    items {
+                      owner
+                    }
+                  }
+                  createdAt
+                }
+              }
+            }
+          }
+        }
+        motives {
+          items {
+            content
+            owner
+            boosts {
+              items {
+                content
+                owner
+                nays {
+                  items {
+                    owner
+                  }
+                }
+                yays {
+                  items {
+                    owner
+                  }
+                }
+              }
+            }
+            createdAt
+          }
+        }
       }
       nextToken
     }

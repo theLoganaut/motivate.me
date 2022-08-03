@@ -1,7 +1,12 @@
 import React from "react";
 import { Card, Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const Explore = () => {
+const Explore = ({ tags }) => {
+  const listTags = tags;
+
+  console.log(listTags);
+
   return (
     <Card style={{ height: "100%", width: "80%" }} className="d-flex">
       <Card.Body>
@@ -14,7 +19,13 @@ const Explore = () => {
           />
           <Button variant="outline-default">➡️</Button>
         </Form>
-        <div>tags would be looped out here</div>
+        {listTags?.map((tag) => {
+          return (
+            <div>
+              <Link to={`/Communities/${tag.name}`}>{tag.name}</Link>
+            </div>
+          );
+        })}
       </Card.Body>
     </Card>
   );

@@ -3,7 +3,7 @@ import { Card, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../Styles/Sidebar.css";
 
-const Sidebar = ({ signOut }) => {
+const Sidebar = ({ signOut, username }) => {
   const sidebarLinks = [
     "Home",
     "Notifications",
@@ -18,9 +18,15 @@ const Sidebar = ({ signOut }) => {
         {sidebarLinks.map((link) => {
           return (
             <Row className="sidebar-spacing">
-              <Link to={`/${link}`} className="sidebar-links">
-                {link}
-              </Link>
+              {link === "Profile" ? (
+                <Link to={`/Profile/${username}`} className="sidebar-links">
+                  {link}
+                </Link>
+              ) : (
+                <Link to={`/${link}`} className="sidebar-links">
+                  {link}
+                </Link>
+              )}
             </Row>
           );
         })}

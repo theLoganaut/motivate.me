@@ -45,8 +45,16 @@ export const onCreateBoost = /* GraphQL */ `
         following {
           nextToken
         }
+        tag {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
         createdAt
         updatedAt
+        tagMotivesId
         publicUserMotivesId
         owner
       }
@@ -124,8 +132,16 @@ export const onUpdateBoost = /* GraphQL */ `
         following {
           nextToken
         }
+        tag {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
         createdAt
         updatedAt
+        tagMotivesId
         publicUserMotivesId
         owner
       }
@@ -203,8 +219,16 @@ export const onDeleteBoost = /* GraphQL */ `
         following {
           nextToken
         }
+        tag {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
         createdAt
         updatedAt
+        tagMotivesId
         publicUserMotivesId
         owner
       }
@@ -290,8 +314,19 @@ export const onCreateMotive = /* GraphQL */ `
         }
         nextToken
       }
+      tag {
+        id
+        name
+        motives {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
+      tagMotivesId
       publicUserMotivesId
       owner
     }
@@ -349,8 +384,19 @@ export const onUpdateMotive = /* GraphQL */ `
         }
         nextToken
       }
+      tag {
+        id
+        name
+        motives {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
+      tagMotivesId
       publicUserMotivesId
       owner
     }
@@ -408,9 +454,92 @@ export const onDeleteMotive = /* GraphQL */ `
         }
         nextToken
       }
+      tag {
+        id
+        name
+        motives {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
+      tagMotivesId
       publicUserMotivesId
+      owner
+    }
+  }
+`;
+export const onCreateTag = /* GraphQL */ `
+  subscription OnCreateTag {
+    onCreateTag {
+      id
+      name
+      motives {
+        items {
+          id
+          content
+          complete
+          createdAt
+          updatedAt
+          tagMotivesId
+          publicUserMotivesId
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateTag = /* GraphQL */ `
+  subscription OnUpdateTag {
+    onUpdateTag {
+      id
+      name
+      motives {
+        items {
+          id
+          content
+          complete
+          createdAt
+          updatedAt
+          tagMotivesId
+          publicUserMotivesId
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteTag = /* GraphQL */ `
+  subscription OnDeleteTag {
+    onDeleteTag {
+      id
+      name
+      motives {
+        items {
+          id
+          content
+          complete
+          createdAt
+          updatedAt
+          tagMotivesId
+          publicUserMotivesId
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
       owner
     }
   }
@@ -427,6 +556,7 @@ export const onCreatePublicUser = /* GraphQL */ `
           complete
           createdAt
           updatedAt
+          tagMotivesId
           publicUserMotivesId
           owner
         }
@@ -496,6 +626,7 @@ export const onUpdatePublicUser = /* GraphQL */ `
           complete
           createdAt
           updatedAt
+          tagMotivesId
           publicUserMotivesId
           owner
         }
@@ -565,6 +696,7 @@ export const onDeletePublicUser = /* GraphQL */ `
           complete
           createdAt
           updatedAt
+          tagMotivesId
           publicUserMotivesId
           owner
         }
@@ -622,6 +754,42 @@ export const onDeletePublicUser = /* GraphQL */ `
     }
   }
 `;
+export const onCreatePrivateUser = /* GraphQL */ `
+  subscription OnCreatePrivateUser($owner: String) {
+    onCreatePrivateUser(owner: $owner) {
+      id
+      username
+      email
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdatePrivateUser = /* GraphQL */ `
+  subscription OnUpdatePrivateUser($owner: String) {
+    onUpdatePrivateUser(owner: $owner) {
+      id
+      username
+      email
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeletePrivateUser = /* GraphQL */ `
+  subscription OnDeletePrivateUser($owner: String) {
+    onDeletePrivateUser(owner: $owner) {
+      id
+      username
+      email
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
 export const onCreateFollow = /* GraphQL */ `
   subscription OnCreateFollow {
     onCreateFollow {
@@ -665,8 +833,16 @@ export const onCreateFollow = /* GraphQL */ `
         following {
           nextToken
         }
+        tag {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
         createdAt
         updatedAt
+        tagMotivesId
         publicUserMotivesId
         owner
       }
@@ -722,8 +898,16 @@ export const onUpdateFollow = /* GraphQL */ `
         following {
           nextToken
         }
+        tag {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
         createdAt
         updatedAt
+        tagMotivesId
         publicUserMotivesId
         owner
       }
@@ -779,8 +963,16 @@ export const onDeleteFollow = /* GraphQL */ `
         following {
           nextToken
         }
+        tag {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
         createdAt
         updatedAt
+        tagMotivesId
         publicUserMotivesId
         owner
       }
@@ -835,6 +1027,7 @@ export const onCreateYay = /* GraphQL */ `
           complete
           createdAt
           updatedAt
+          tagMotivesId
           publicUserMotivesId
           owner
         }
@@ -900,6 +1093,7 @@ export const onUpdateYay = /* GraphQL */ `
           complete
           createdAt
           updatedAt
+          tagMotivesId
           publicUserMotivesId
           owner
         }
@@ -965,6 +1159,7 @@ export const onDeleteYay = /* GraphQL */ `
           complete
           createdAt
           updatedAt
+          tagMotivesId
           publicUserMotivesId
           owner
         }
@@ -1030,6 +1225,7 @@ export const onCreateNay = /* GraphQL */ `
           complete
           createdAt
           updatedAt
+          tagMotivesId
           publicUserMotivesId
           owner
         }
@@ -1095,6 +1291,7 @@ export const onUpdateNay = /* GraphQL */ `
           complete
           createdAt
           updatedAt
+          tagMotivesId
           publicUserMotivesId
           owner
         }
@@ -1160,6 +1357,7 @@ export const onDeleteNay = /* GraphQL */ `
           complete
           createdAt
           updatedAt
+          tagMotivesId
           publicUserMotivesId
           owner
         }

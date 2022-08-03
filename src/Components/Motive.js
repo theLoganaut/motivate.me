@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Col, Button, Card, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { CreateBoost } from "../Controllers/Create";
 import BoostCreator from "./BoostCreator";
 
@@ -18,11 +19,14 @@ const Motive = ({ motive, userId, username }) => {
     expandContractBoost();
     setBoostcontent("");
   };
+  console.log(motive);
 
   return (
     <div>
       <Col style={{ display: "flex" }}>
-        <Card.Subtitle>{username}</Card.Subtitle>
+        <Link to={`/Profile/${username}`}>{username}</Link>
+        {/* <Card.Subtitle>{username}</Card.Subtitle> */}
+        <div>{motive.tag?.name}</div>
         <Card.Body>{motive.content} </Card.Body>
         <Button size="sm" onClick={expandContractBoost}>
           {showBoostCreator ? <>⬆</> : <>⬇</>}

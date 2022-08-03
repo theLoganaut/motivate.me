@@ -1,51 +1,47 @@
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import MotiveCreator from "../Components/MotiveCreator";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { API, graphqlOperation } from "aws-amplify";
-import { homeMotiveList } from "../graphql/queries";
+import { GetRecentPosts, GetTags } from "../Controllers/Get";
 import MotiveIterator from "../Components/MotiveIterator";
 import Sidebar from "../Components/Sidebar";
 import Explore from "../Components/Explore";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Styles/Home.css";
 
-function App({ signOut, user }) {
+function Home({ signOut, user }) {
   const [motives, setMotives] = useState([]);
+  const [tags, setTags] = useState([]);
+
+  const [refresh, setRefresh] = useState(0);
 
   useEffect(() => {
-    const getRecentPosts = async () => {
-      try {
-        const motives = await API.graphql(graphqlOperation(homeMotiveList));
-        console.log(motives);
-        setMotives(motives.data.listMotives.items);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    getRecentPosts();
-  }, []);
+    GetRecentPosts(setMotives);
+    GetTags(setTags);
+  }, [refresh]);
 
   return (
     // classname="App" for styling?
     <Container>
       <Row className="App-top-spacing">
         <Col className="App-sidebar">
-          {/* sidebar */} <Sidebar signOut={signOut} />
+          <Sidebar signOut={signOut} username={user.username} />
         </Col>
         <Col style={{ minWidth: "40%" }}>
-          {/* motives & boosts */}
-          {/* <button onClick={() => console.log(posts)}>test</button> */}
-          <MotiveCreator userID={user.attributes.sub} />
+          <MotiveCreator
+            userID={user.attributes.sub}
+            setRefresh={setRefresh}
+            refresh={refresh}
+            tags={tags}
+          />
           <MotiveIterator motives={motives} userId={user.attributes.sub} />
         </Col>
         <Col>
-          <Explore />
+          <Explore tags={tags} />
         </Col>
       </Row>
     </Container>
   );
 }
 
-export default withAuthenticator(App);
+export default withAuthenticator(Home);

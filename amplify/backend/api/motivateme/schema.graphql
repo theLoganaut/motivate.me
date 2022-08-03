@@ -1,5 +1,5 @@
 type Boost
-	@model
+  @model(timestamps: { createdAt: "createdAt", updatedAt: "createdAt" })
   @auth(
     rules: [
       { allow: owner, operations: [create] }
@@ -9,13 +9,15 @@ type Boost
   id: ID!
   content: String
   user: PublicUser @belongsTo
-	motive: Motive @belongsTo
-	yays: [Yay] @hasMany
-	nays: [Nay] @hasMany
+  motive: Motive @belongsTo
+  yays: [Yay] @hasMany
+  nays: [Nay] @hasMany
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
 
 type Motive
-  @model
+  @model(timestamps: { createdAt: "createdAt", updatedAt: "createdAt" })
   @auth(
     rules: [
       { allow: owner, operations: [create] }
@@ -25,13 +27,16 @@ type Motive
   id: ID!
   content: String
   user: PublicUser @belongsTo
-	boosts: [Boost] @hasMany
-	complete: Boolean
-	following: [Follow] @hasMany
+  boosts: [Boost] @hasMany
+  complete: Boolean
+  following: [Follow] @hasMany
+  tag: Tag @belongsTo
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
 
-type PublicUser
-  @model
+type Tag
+  @model(timestamps: { createdAt: "createdAt", updatedAt: "createdAt" })
   @auth(
     rules: [
       { allow: owner, operations: [create] }
@@ -39,16 +44,43 @@ type PublicUser
     ]
   ) {
   id: ID!
-  username: String!
+  name: String! @index(name: "byTagName", queryField: "tagsByName")
   motives: [Motive] @hasMany
-	boosts: [Boost] @hasMany
-	followed: [Follow] @hasMany
-	yays: [Yay] @hasMany
-	nays: [Nay] @hasMany
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type PublicUser
+  @model(timestamps: { createdAt: "createdAt", updatedAt: "createdAt" })
+  @auth(
+    rules: [
+      { allow: owner, operations: [create] }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  username: String! @index(name: "byUsername", queryField: "userByUsername")
+  motives: [Motive] @hasMany
+  boosts: [Boost] @hasMany
+  followed: [Follow] @hasMany
+  yays: [Yay] @hasMany
+  nays: [Nay] @hasMany
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type PrivateUser
+  @model(timestamps: { createdAt: "createdAt", updatedAt: "createdAt" })
+  @auth(rules: [{ allow: owner, operations: [create, read] }]) {
+  id: ID!
+  username: String!
+  email: String!
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
 
 type Follow
-	@model
+  @model(timestamps: { createdAt: "createdAt", updatedAt: "createdAt" })
   @auth(
     rules: [
       { allow: owner, operations: [create] }
@@ -58,12 +90,13 @@ type Follow
   id: ID!
   user: PublicUser @belongsTo
   motive: Motive @belongsTo
-	timer: String
+  timer: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
 
-
 type Yay
-  @model
+  @model(timestamps: { createdAt: "createdAt", updatedAt: "createdAt" })
   @auth(
     rules: [
       { allow: owner, operations: [create] }
@@ -72,11 +105,13 @@ type Yay
   ) {
   id: ID!
   user: PublicUser @belongsTo
-	boost: Boost @belongsTo
+  boost: Boost @belongsTo
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
 
 type Nay
-  @model
+  @model(timestamps: { createdAt: "createdAt", updatedAt: "createdAt" })
   @auth(
     rules: [
       { allow: owner, operations: [create] }
@@ -85,5 +120,7 @@ type Nay
   ) {
   id: ID!
   user: PublicUser @belongsTo
-	boost: Boost @belongsTo
+  boost: Boost @belongsTo
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }

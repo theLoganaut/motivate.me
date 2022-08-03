@@ -7,7 +7,7 @@
   "functionName": "motivatemefd7cb0aafd7cb0aaPostConfirmation",
   "resourceName": "motivatemefd7cb0aafd7cb0aaPostConfirmation",
   "parentStack": "auth",
-  "triggerEnvs": [],
+  "triggerEnvs": "[]",
   "triggerDir": "/usr/local/lib/node_modules/@aws-amplify/cli/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PostConfirmation",
   "triggerTemplate": "PostConfirmation.json.ejs",
   "triggerEventPath": "PostConfirmation.event.json",

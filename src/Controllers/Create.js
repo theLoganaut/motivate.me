@@ -1,39 +1,77 @@
 import { API, graphqlOperation } from "aws-amplify";
-// import { createPost, createComment } from "../graphql/mutations";
+import {
+  createMotive,
+  createBoost,
+  createYay,
+  createNay,
+} from "../graphql/mutations";
 import { v4 as uuidv4 } from "uuid";
 
-const CreateMotive = async (content, userID) => {
+const CreateMotive = async (content, tagId, userID) => {
   const postData = {
     id: uuidv4(),
+    tagMotivesId: tagId,
     content: content,
-    publicUserPostsId: userID,
+    publicUserMotivesId: userID,
+    complete: false,
   };
   try {
-    // await API.graphql(graphqlOperation(createPost, { input: postData })).then(
-    //   console.log("test")
-    // );
+    await API.graphql(graphqlOperation(createMotive, { input: postData })).then(
+      (r) => console.log(r)
+    );
     console.log(postData);
   } catch (error) {
     console.log("error creating new Post:", error);
   }
 };
 
-const CreateBoost = async (content, userID, postID) => {
+const CreateBoost = async (content, userID, motiveId) => {
   //needs to get post id too
   const postData = {
     id: uuidv4(),
     content: content,
-    publicUserPostsId: userID,
-    postCommentsId: postID,
+    publicUserBoostsId: userID,
+    motiveBoostsId: motiveId,
   };
   try {
-    // await API.graphql(graphqlOperation(createComment, { input: postData })).then(
-    //   console.log("test")
-    // );
-    console.log(postData);
+    await API.graphql(graphqlOperation(createBoost, { input: postData })).then(
+      (r) => console.log(r)
+    );
   } catch (error) {
     console.log("error creating new Post:", error);
   }
 };
 
-export { CreateMotive, CreateBoost };
+const CreateYay = async (userID, boostId) => {
+  //needs to get post id too
+  const postData = {
+    id: uuidv4(),
+    publicUserBoostsId: userID,
+    boostYaysId: boostId,
+  };
+  try {
+    await API.graphql(graphqlOperation(createYay, { input: postData })).then(
+      (r) => console.log(r)
+    );
+  } catch (error) {
+    console.log("error creating new Post:", error);
+  }
+};
+
+const CreateNay = async (userID, boostId) => {
+  //needs to get post id too
+  const postData = {
+    id: uuidv4(),
+    publicUserBoostsId: userID,
+    boostYaysId: boostId,
+  };
+  try {
+    await API.graphql(graphqlOperation(createNay, { input: postData })).then(
+      (r) => console.log(r)
+    );
+  } catch (error) {
+    console.log("error creating new Post:", error);
+  }
+};
+
+export { CreateMotive, CreateBoost, CreateYay, CreateNay };
