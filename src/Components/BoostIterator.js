@@ -1,46 +1,20 @@
-import React from "react";
-import { Card, Button, ButtonGroup, Row, Col } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import Boost from "./Boost";
 
-const BoostIterator = ({ boosts }) => {
+const BoostIterator = ({ boosts, username, userId }) => {
   const boostList = boosts;
 
-  console.log(boosts);
+  const [voted, setVoted] = useState(false);
+
+  const reVote = (boostId) => {
+    //delete the previous vote
+    setVoted(false);
+  };
 
   return (
     <>
       {boostList.map((boost) => {
-        return (
-          <>
-            <Card
-              style={{
-                marginRight: "2em",
-                marginLeft: "2em",
-                background: "#dee2e6",
-                display: "flex",
-              }}
-            >
-              <Row>
-                <Col>
-                  <Card.Text>{boost.content}</Card.Text>
-                  <Card.Subtitle>{boost.owner}</Card.Subtitle>
-                </Col>
-                <Col>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-end",
-                    }}
-                  >
-                    <ButtonGroup vertical>
-                      <Button variant="success">Yum!</Button>
-                      <Button variant="danger">Yuck!</Button>
-                    </ButtonGroup>
-                  </div>
-                </Col>
-              </Row>
-            </Card>
-          </>
-        );
+        return <Boost boost={boost} username={username} userId={userId} />;
       })}
     </>
   );

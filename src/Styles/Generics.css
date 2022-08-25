@@ -1,0 +1,83 @@
+/* const melon = "#FF9F85";
+  const lightyellow = "#F3EEC3";
+  const yellow = "#F4D890";
+  const muteRed = "#C08497";
+  const babyBlue = "#A4C8CC"; */
+
+.main-container {
+  background: linear-gradient(to bottom, #C08497 60%, #A4C8CC 40%);
+  overflow: hidden;
+  height: 100vh;
+}
+.main-cards {
+  background-color: #F3EEC3 !important;
+  margin-right: 1em;
+  display: flex;
+}
+.sub-cards {
+  background-color: #F4D890 !important;
+  border-color: darkslategray !important;
+  margin-right: 1em;
+  display: flex;
+}
+.links{
+  color: darkslategray;
+  text-decoration: none;
+}
+.big-links{
+  color: darkslategray;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.expand-container {
+  overflow: hidden;
+}
+
+.expand-contract {
+  margin-top: -100%;
+  transition: all 1s;
+}
+
+.expand-contract.expanded {
+  background-color: #F3EEC3;
+  margin-top: 0;
+}
+
+.buttons {
+  background-color: #F7AF9D  !important;
+  border-color: darkslategray !important;
+  color: black !important;
+}
+.buttons:hover {
+  background-color: #F4937B !important;
+}
+
+.sidebar {
+  margin-right: 1em;
+  display: flex;
+  justify-content: end;
+  justify-content: flex-end;
+}
+
+.yum-buttons {
+  background-color: #88D498 !important;
+  border-color: darkslategray !important;
+  color: black !important;
+}
+.yum-buttons:hover {
+  background-color:  #1A936F!important;
+}
+
+.yuck-buttons {
+  background-color: #CFA0AF !important;
+  border-color: darkslategray !important;
+  color: black !important;
+}
+.yuck-buttons:hover {
+  background-color:  #F7AF9D !important;
+}
+
+.spacing {
+  margin: .5em .5em .5em .5em
+}

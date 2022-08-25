@@ -45,6 +45,7 @@ export const createBoost = /* GraphQL */ `
           nextToken
         }
         complete
+        reminderTime
         following {
           nextToken
         }
@@ -135,6 +136,7 @@ export const updateBoost = /* GraphQL */ `
           nextToken
         }
         complete
+        reminderTime
         following {
           nextToken
         }
@@ -225,6 +227,7 @@ export const deleteBoost = /* GraphQL */ `
           nextToken
         }
         complete
+        reminderTime
         following {
           nextToken
         }
@@ -314,6 +317,7 @@ export const createMotive = /* GraphQL */ `
         nextToken
       }
       complete
+      reminderTime
       following {
         items {
           id
@@ -387,6 +391,7 @@ export const updateMotive = /* GraphQL */ `
         nextToken
       }
       complete
+      reminderTime
       following {
         items {
           id
@@ -460,6 +465,7 @@ export const deleteMotive = /* GraphQL */ `
         nextToken
       }
       complete
+      reminderTime
       following {
         items {
           id
@@ -503,6 +509,7 @@ export const createTag = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -530,6 +537,7 @@ export const updateTag = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -557,6 +565,7 @@ export const deleteTag = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -584,6 +593,7 @@ export const createPublicUser = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -657,6 +667,7 @@ export const updatePublicUser = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -730,6 +741,7 @@ export const deletePublicUser = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -878,6 +890,7 @@ export const createFollow = /* GraphQL */ `
           nextToken
         }
         complete
+        reminderTime
         following {
           nextToken
         }
@@ -946,6 +959,7 @@ export const updateFollow = /* GraphQL */ `
           nextToken
         }
         complete
+        reminderTime
         following {
           nextToken
         }
@@ -1014,6 +1028,7 @@ export const deleteFollow = /* GraphQL */ `
           nextToken
         }
         complete
+        reminderTime
         following {
           nextToken
         }
@@ -1082,6 +1097,7 @@ export const createYay = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -1151,6 +1167,7 @@ export const updateYay = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -1220,6 +1237,7 @@ export const deleteYay = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -1289,6 +1307,7 @@ export const createNay = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -1358,6 +1377,7 @@ export const updateNay = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -1427,6 +1447,7 @@ export const deleteNay = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId

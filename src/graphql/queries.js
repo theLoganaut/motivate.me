@@ -42,6 +42,7 @@ export const getBoost = /* GraphQL */ `
           nextToken
         }
         complete
+        reminderTime
         following {
           nextToken
         }
@@ -109,6 +110,7 @@ export const listBoosts = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -171,6 +173,7 @@ export const getMotive = /* GraphQL */ `
         nextToken
       }
       complete
+      reminderTime
       following {
         items {
           id
@@ -222,6 +225,7 @@ export const listMotives = /* GraphQL */ `
           nextToken
         }
         complete
+        reminderTime
         following {
           nextToken
         }
@@ -252,6 +256,7 @@ export const getTag = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -297,6 +302,7 @@ export const getPublicUser = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -461,6 +467,7 @@ export const getFollow = /* GraphQL */ `
           nextToken
         }
         complete
+        reminderTime
         following {
           nextToken
         }
@@ -506,6 +513,7 @@ export const listFollows = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -563,6 +571,7 @@ export const getYay = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -664,6 +673,7 @@ export const getNay = /* GraphQL */ `
           id
           content
           complete
+          reminderTime
           createdAt
           updatedAt
           tagMotivesId
@@ -795,6 +805,7 @@ export const userByUsername = /* GraphQL */ `
     }
   }
 `;
+
 export const listHomeMotives = /* GraphQL */ `
   query ListMotives(
     $filter: ModelMotiveFilterInput
@@ -819,26 +830,30 @@ export const listHomeMotives = /* GraphQL */ `
             content
             yays {
               items {
-                id
-                publicUserYaysId
+                owner
               }
             }
             nays {
               items {
-                id
-                publicUserNaysId
+                owner
               }
             }
           }
         }
         complete
         following {
-          nextToken
+          items {
+            owner
+          }
         }
         createdAt
         updatedAt
         publicUserMotivesId
         owner
+        reminderTime
+        tag {
+          name
+        }
       }
       nextToken
     }
@@ -888,6 +903,7 @@ export const allMotivesWithTag = /* GraphQL */ `
     }
   }
 `;
+
 export const profilePageQuery = /* GraphQL */ `
   query UserByUsername(
     $username: String
@@ -904,11 +920,19 @@ export const profilePageQuery = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
+        username
         boosts {
           items {
             motive {
               content
+              complete
               owner
+              reminderTime
+              following {
+                items {
+                  owner
+                }
+              }
               boosts {
                 items {
                   content
@@ -923,16 +947,23 @@ export const profilePageQuery = /* GraphQL */ `
                       owner
                     }
                   }
-                  createdAt
                 }
+              }
+              tag {
+                name
               }
             }
           }
         }
         motives {
           items {
+            complete
             content
             owner
+            reminderTime
+            tag {
+              name
+            }
             boosts {
               items {
                 content
@@ -949,7 +980,177 @@ export const profilePageQuery = /* GraphQL */ `
                 }
               }
             }
-            createdAt
+            following {
+              items {
+                owner
+              }
+            }
+          }
+        }
+      }
+      nextToken
+    }
+  }
+`;
+
+export const getUserFollowing = /* GraphQL */ `
+  query UserByUsername(
+    $username: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelPublicUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByUsername(
+      username: $username
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        followed {
+          items {
+            motive {
+              boosts {
+                items {
+                  owner
+                  yays {
+                    items {
+                      owner
+                    }
+                  }
+                  nays {
+                    items {
+                      owner
+                    }
+                  }
+                  content
+                }
+              }
+              content
+              createdAt
+              owner
+              reminderTime
+              complete
+              following {
+                items {
+                  owner
+                }
+              }
+            }
+            timer
+          }
+        }
+      }
+      nextToken
+    }
+  }
+`;
+
+export const ongoingMotives = /* GraphQL */ `
+  query UserByUsername(
+    $username: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelPublicUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByUsername(
+      username: $username
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        username
+        motives {
+          items {
+            complete
+            content
+            owner
+            reminderTime
+            tag {
+              name
+            }
+            boosts {
+              items {
+                content
+                owner
+                nays {
+                  items {
+                    owner
+                  }
+                }
+                yays {
+                  items {
+                    owner
+                  }
+                }
+              }
+            }
+            following {
+              items {
+                owner
+              }
+            }
+          }
+        }
+      }
+      nextToken
+    }
+  }
+`;
+
+// !UNFINISHISH/UNIMPLEMENTED
+export const userYaysAndNays = /* GraphQL */ `
+  query UserByUsername(
+    $username: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelPublicUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByUsername(
+      username: $username
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        username
+        motives {
+          items {
+            complete
+            content
+            owner
+            reminderTime
+            tag {
+              name
+            }
+            boosts {
+              items {
+                content
+                owner
+                nays {
+                  items {
+                    owner
+                  }
+                }
+                yays {
+                  items {
+                    owner
+                  }
+                }
+              }
+            }
+            following {
+              items {
+                owner
+              }
+            }
           }
         }
       }

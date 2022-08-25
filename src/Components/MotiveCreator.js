@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react";
-import { Card, Button, Form } from "react-bootstrap";
+import { Card, Button, Form, Row, Col } from "react-bootstrap";
+import DateTimePicker from "react-datetime-picker";
 import { CreateMotive } from "../Controllers/Create";
+import "../Styles/MotiveCreator.css";
 
 const MotiveCreator = ({ userID, setRefresh, refresh, tags }) => {
   const [motiveContent, setMotiveContent] = useState("");
   const [motiveTag, setMotiveTag] = useState(false);
+  const [reminderTime, changeReminderTime] = useState(new Date());
   const [disallowPost, setDisallowPost] = useState(true);
   const tagList = tags;
   const submitMotive = (e) => {
     e.persist();
-    CreateMotive(motiveContent, motiveTag, userID);
-    setRefresh((refresh) => refresh++);
+    const toISO = reminderTime.toISOString();
+    CreateMotive(motiveContent, motiveTag, userID, toISO);
+    // setRefresh((refresh) => refresh++);
     setMotiveContent("");
     setMotiveTag(false);
   };
@@ -22,29 +26,96 @@ const MotiveCreator = ({ userID, setRefresh, refresh, tags }) => {
   }, [motiveTag]);
 
   return (
-    <Card>
+    <Card className="main-cards">
       <Card.Body>
         {/* title to be inherited from route */}
-        <div>
-          <Card.Title>Home</Card.Title>
-          <div className="d-flex" style={{ justifyContent: "flex-end" }}></div>
-        </div>
+        <Row>
+          <Col>
+            <Card.Title>Home</Card.Title>
+          </Col>
+          <Col
+            style={{
+              justifyContent: "flex-end",
+              marginLeft: "40%",
+            }}
+          >
+            <div>
+              <Form.Select
+                aria-label="Default select example"
+                style={{
+                  background: "#F3EEC3",
+                  overflow: "visible",
+                }}
+                onChange={(e) => setMotiveTag(e.target.value)}
+              >
+                <option>Tag me!</option>
+                {tagList.map((tag) => {
+                  return (
+                    // figure out how to change background and txt color here
+                    <option
+                      value={tag.id}
+                      style={{
+                        background: "red !important",
+                        color: "blue !important",
+                      }}
+                    >
+                      {tag.name}
+                    </option>
+                  );
+                })}
+              </Form.Select>
+            </div>
+          </Col>
+        </Row>
 
         <Form>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <Form.Group
+            className="mb-3"
+            controlId="exampleForm.ControlTextarea1"
+            style={{ background: "#F3EEC3 !important" }}
+          >
             <Form.Control
               as="textarea"
+              style={{}}
               rows={3}
               onChange={(e) => setMotiveContent(e.target.value)}
               value={motiveContent}
+              className="sub-cards"
               placeholder="What do you need a boost on today?"
             />
           </Form.Group>
         </Form>
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <Row>
+          <Col>
+            <DateTimePicker
+              onChange={changeReminderTime}
+              value={reminderTime}
+              style={{ maxWidth: "30%", display: "flex" }}
+            />
+          </Col>
+          <Col className="d-flex" style={{ justifyContent: "flex-end" }}>
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={submitMotive}
+              disabled={disallowPost}
+              className="buttons"
+            >
+              {" "}
+              Post!{" "}
+            </Button>
+          </Col>
+        </Row>
+
+        {/* <div style={{ display: "flex" }}>
+          <DateTimePicker
+            onChange={changeReminderTime}
+            value={reminderTime}
+            style={{ maxWidth: "30%", display: "flex" }}
+          />
           <Form.Select
             aria-label="Default select example"
-            style={{ maxWidth: "50%", justifyContent: "flex-end" }}
+            style={{ maxWidth: "30%", justifyContent: "flex-end" }}
             onChange={(e) => setMotiveTag(e.target.value)}
           >
             <option>Tag me!</option>
@@ -52,16 +123,19 @@ const MotiveCreator = ({ userID, setRefresh, refresh, tags }) => {
               return <option value={tag.id}>{tag.name}</option>;
             })}
           </Form.Select>
-          <Button
-            variant="primary"
-            type="submit"
-            onClick={submitMotive}
-            disabled={false}
-          >
-            {" "}
-            Post!{" "}
-          </Button>
-        </div>
+          <div style={{ justifySelf: "flex-end" }}>
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={"submitMotive"}
+              disabled={disallowPost}
+              className="buttons"
+            >
+              {" "}
+              Post!{" "}
+            </Button>
+          </div>
+        </div> */}
       </Card.Body>
     </Card>
   );

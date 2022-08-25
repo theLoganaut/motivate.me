@@ -1,11 +1,16 @@
-import { useState, useEffect } from "react";
-import { Card, Button, Form } from "react-bootstrap";
-import { API, graphqlOperation } from "aws-amplify";
-import { v4 as uuidv4 } from "uuid";
-import { createboost } from "../graphql/mutations";
+import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import { CreateBoost } from "../Controllers/Create";
 
-const BoostCreator = ({ motiveId, userId, submitBoost }) => {
+const BoostCreator = ({ motiveId, userId, expandContractBoost }) => {
   const [boostContent, setBoostContent] = useState("");
+  const submitBoost = async (e) => {
+    e.persist();
+    CreateBoost(boostContent, userId, motiveId);
+    expandContractBoost();
+    setBoostContent("");
+  };
+
   return (
     <>
       <Form>
@@ -16,11 +21,12 @@ const BoostCreator = ({ motiveId, userId, submitBoost }) => {
             onChange={(e) => setBoostContent(e.target.value)}
             value={boostContent}
             placeholder="Remember to be positive, contructive and uplifting!"
+            className="sub-cards"
           />
         </Form.Group>
       </Form>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <Button variant="primary" type="submit" onClick={submitBoost}>
+        <Button className="buttons" type="submit" onClick={submitBoost}>
           {" "}
           Boost!{" "}
         </Button>

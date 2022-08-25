@@ -2,11 +2,11 @@
   text-align: center;
 }
 
-.App-top-spacing {
+.home-top-spacing {
   margin-top: 2%;
 }
 
-.App-sidebar {
+.home-sidebar {
   display: flex;
   justify-content: end;
   justify-content: flex-end;

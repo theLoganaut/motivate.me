@@ -29,6 +29,7 @@ type Motive
   user: PublicUser @belongsTo
   boosts: [Boost] @hasMany
   complete: Boolean
+  reminderTime: AWSDateTime
   following: [Follow] @hasMany
   tag: Tag @belongsTo
   createdAt: AWSDateTime
