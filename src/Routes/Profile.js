@@ -1,47 +1,51 @@
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import MotiveCreator from "../Components/MotiveCreator";
-import { Col, Container, Row, Card, Tabs, Tab } from "react-bootstrap";
+import { Col, Container, Row, Card, Tabs, Tab, Nav } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import {
   GetFollowingMotives,
   GetOngoingMotives,
   GetUserPosts,
+  GetUserVotes,
 } from "../Controllers/Get";
 import MotiveIterator from "../Components/MotiveIterator";
 import Sidebar from "../Components/Sidebar";
 import Explore from "../Components/Explore";
-import { useNavigate, useParams } from "react-router-dom";
+import {
+  Routes,
+  useNavigate,
+  useParams,
+  Route,
+  Link,
+  BrowserRouter,
+} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Styles/Home.css";
 
 function Profile({ signOut, user }) {
   const params = useParams();
-  let navigate = useNavigate();
-
-  const [key, setKey] = useState("MnB");
 
   const [refresh, setRefresh] = useState(0);
 
   const [boostsAndMotives, setBoostsAndMotives] = useState([]);
 
-  const [yaysAndNays, setYaysAndNays] = useState([]);
-
   useEffect(() => {
     setBoostsAndMotives([]);
-    if (key === "MnB") {
-      GetUserPosts(params["*"], setBoostsAndMotives);
+    if (params["*"] === `mnb`) {
+      GetUserPosts(user.username, setBoostsAndMotives);
     }
-    if (key === "YaysNays") {
+    if (params["*"] === "votes") {
+      GetUserVotes(user.username, setBoostsAndMotives);
     }
-    if (key === "following") {
-      GetFollowingMotives(params["*"], setBoostsAndMotives);
+    if (params["*"] === `following`) {
+      GetFollowingMotives(user.username, setBoostsAndMotives);
     }
-    if (key === "ongoing") {
-      GetOngoingMotives(params["*"], setBoostsAndMotives);
+    if (params["*"] === "ongoing") {
+      GetOngoingMotives(user.username, setBoostsAndMotives);
     }
-  }, [key, params]);
+  }, [params, user.username]);
 
-  console.log(boostsAndMotives);
+  console.log(boostsAndMotives, params["*"], params.username);
 
   return (
     // classname="App" for styling?
@@ -56,40 +60,101 @@ function Profile({ signOut, user }) {
           <Sidebar signOut={signOut} />
         </Col>
         <Col style={{ minWidth: "25%" }}>
-          <Card style={{ minHeight: "4em" }}>
-            <Card.Title>{params["*"]}</Card.Title>
-            <Card.Body>Bio goes here.</Card.Body>
-          </Card>
-          <Tabs
-            defaultActiveKey="MnB"
-            id="justify-tab-example"
-            activeKey={key}
-            onSelect={(k) => setKey(k)}
-            className="mb-3"
-            justify
+          <Card
+            className="main-cards"
+            style={{ minHeight: "4em", borderWidth: "0px" }}
           >
-            <Tab eventKey="MnB" title="Motives & Boosts">
-              <MotiveIterator
-                motives={boostsAndMotives}
-                username={user.username}
-              />
-            </Tab>
+            <Card.Title style={{ marginLeft: ".5em", marginTop: ".5em" }}>
+              {params.username}
+            </Card.Title>
+            <Card.Body>Bio goes here.</Card.Body>
+            <Nav
+              className="main-cards"
+              fill
+              justify
+              style={{ marginRight: "0em" }}
+            >
+              <Nav.Item
+                style={{
+                  borderColor: "black",
+                  borderWidth: "2px",
+                  borderStyle: "solid",
+                  borderRadius: "2px",
+                  borderBottom: params["*"] === "mnb" ? "hidden" : "solid",
+                  backgroundColor:
+                    params["*"] === "mnb" ? "#F4D890" : "#F3EEC3",
+                }}
+              >
+                <Nav.Link
+                  eventKey={"MnB"}
+                  as={Link}
+                  to={`/profile/${user.username}/mnb`}
+                >
+                  M's n B's
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item
+                style={{
+                  borderColor: "black",
+                  borderWidth: "2px",
+                  borderStyle: "solid",
+                  borderRadius: "2px",
+                  borderBottom:
+                    params["*"] === "following" ? "hidden" : "solid",
+                  backgroundColor:
+                    params["*"] === "following" ? "#F4D890" : "#F3EEC3",
+                }}
+              >
+                <Nav.Link
+                  eventKey={"following"}
+                  as={Link}
+                  to={`/profile/${user.username}/following`}
+                >
+                  Following
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item
+                style={{
+                  borderColor: "black",
+                  borderWidth: "2px",
+                  borderStyle: "solid",
+                  borderRadius: "2px",
+                  borderBottom: params["*"] === "ongoing" ? "hidden" : "solid",
+                  backgroundColor:
+                    params["*"] === "ongoing" ? "#F4D890" : "#F3EEC3",
+                }}
+              >
+                <Nav.Link
+                  eventKey={"ongoing"}
+                  as={Link}
+                  to={`/profile/${user.username}/ongoing`}
+                >
+                  Ongoing
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item
+                style={{
+                  borderColor: "black",
+                  borderWidth: "2px",
+                  borderStyle: "solid",
+                  borderRadius: "2px",
+                  borderBottom: params["*"] === "votes" ? "hidden" : "solid",
+                  backgroundColor:
+                    params["*"] === "votes" ? "#F4D890" : "#F3EEC3",
+                }}
+              >
+                <Nav.Link
+                  eventKey={"ongoing"}
+                  as={Link}
+                  to={`/profile/${user.username}/votes`}
+                >
+                  Votes
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Card>
 
-            {/* <Tab eventKey="YaysNays" title="Yays & Nays"></Tab> */}
-            <Tab eventKey="following" title="Following">
-              <MotiveIterator
-                motives={boostsAndMotives}
-                username={user.username}
-              />
-            </Tab>
-            <Tab eventKey="ongoing" title="Ongoing">
-              <MotiveIterator
-                motives={boostsAndMotives}
-                username={user.username}
-              />
-            </Tab>
-          </Tabs>
-          {/* <MotiveIterator motives={boostsAndMotives} /> */}
+          <MotiveIterator motives={boostsAndMotives} username={user.username} />
         </Col>
         <Col>
           <Explore />

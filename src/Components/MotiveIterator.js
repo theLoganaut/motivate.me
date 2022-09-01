@@ -10,7 +10,7 @@ const MotiveIterator = ({ motives, userId, username }) => {
 
   const [motiveBorder, setMotiveBorder] = useState("slategray");
 
-  console.log(motiveBorder);
+  console.log(motiveList);
 
   return (
     <div>

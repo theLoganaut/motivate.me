@@ -95,7 +95,24 @@ const GetOngoingMotives = async (username, ...setters) => {
   }
 };
 
+const GetUserVotes = async (username, ...setters) => {
+  try {
+    const allMotives = await API
+      .graphql
+      // needs a query
+      // graphqlOperation(ongoingMotives, {
+      //   username: username,
+      // })
+      ();
+    //
+    // setters[0](allMotives.data.userByUsername.items[0].motives.items);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export {
+  GetUserVotes,
   GetFollowingMotives,
   GetRecentPosts,
   GetUserPosts,

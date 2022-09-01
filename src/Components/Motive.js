@@ -45,7 +45,7 @@ const Motive = ({ motive, userId, username, setMotiveBorder }) => {
     username,
   ]);
 
-  console.log(motive.owner, username, sameUser, alreadyFollowing);
+  // console.log(motive.owner, username, sameUser, alreadyFollowing);
   // console.log(motive.following.items);
 
   return (

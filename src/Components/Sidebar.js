@@ -14,7 +14,7 @@ const Sidebar = ({ signOut, username }) => {
           return (
             <Row className="sidebar-spacing">
               {link === "Profile" ? (
-                <Link to={`/Profile/${username}`} className="big-links">
+                <Link to={`/profile/${username}/mnb`} className="big-links">
                   {link}
                 </Link>
               ) : (

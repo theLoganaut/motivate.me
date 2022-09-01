@@ -17,7 +17,7 @@ const Boost = ({ boost, username, userId }) => {
   }, [boost.nays.items, boost.yays.items, username]);
 
   const reVote = () => {
-    console.log("eventually delete the vote then allow");
+    // console.log("eventually delete the vote then allow");
   };
 
   return (

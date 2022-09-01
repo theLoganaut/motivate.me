@@ -2,12 +2,19 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import { RequireAuth } from "./Controllers/RequireAuth";
 import Login from "./Routes/Login";
 import Home from "./Routes/Home";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Communities from "./Routes/Communities";
 import Profile from "./Routes/Profile";
 import Following from "./Routes/Following";
+import MotiveIterator from "./Components/MotiveIterator";
+import { useEffect } from "react";
 
-function MyRoutes() {
+function MyRoutes({ user }) {
+  const params = useParams();
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   return (
     <BrowserRouter>
       <Routes>
@@ -21,13 +28,18 @@ function MyRoutes() {
           }
         />
         <Route
-          path="/profile/*"
+          path="/profile/:username/*"
           element={
             <RequireAuth>
               <Profile />
             </RequireAuth>
           }
-        />
+        >
+          {/* <Route
+            path={`/profile/:username/:currentTab`}
+            element={<MotiveIterator />}
+          /> */}
+        </Route>
         <Route
           path="/communities/*"
           element={
@@ -46,17 +58,24 @@ function MyRoutes() {
         />
       </Routes>
     </BrowserRouter>
-    //   <BrowserRouter>
+    // <BrowserRouter>
     //   <Routes>
-    //     <Route path="/" element={<Navigate to="/Login" />} />
+    //     <Route path="/" element={<Background/>} >
+    //     <Route path="login" element={<Login />} />
+    //     <Route index element={<Layout />}>
+    //       <Route index element={<Home />}>
+    //         <Route path="*" element={<MotiveList />} />
+    //       </Route>
+    //       <Route path="communities" element={<Communities />}>
+    //         <Route path="*" element={<MotiveList />} />
+    //       </Route>
+    //       <Route path="following" element={<Following />}>
+    //         <Route path="*" element={<MotiveList />} />
+    //       </Route>
+    //     </Route>
+    //     <Route />
 
-    //     <Route path="/Login" element={<Login />} />
-    //     <Route path="/Connections" element={<Connections />} />
-    //     <Route path="/Home" element={<Home />} />
-    //     <Route path="/Profile/*" element={<Profile />} />
-    //     <Route path="/More" element={<More />} />
-    //     <Route path="/Communities/*" element={<Communities />} />
-    //     <Route path="/Notifications" element={<Notifications />} />
+    //     </Route>
     //   </Routes>
     // </BrowserRouter>
   );
