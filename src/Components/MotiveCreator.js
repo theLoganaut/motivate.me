@@ -4,7 +4,7 @@ import DateTimePicker from "react-datetime-picker";
 import { CreateMotive } from "../Controllers/Create";
 import "../Styles/MotiveCreator.css";
 
-const MotiveCreator = ({ userID, setRefresh, refresh, tags }) => {
+const MotiveCreator = ({ userID, tags }) => {
   const [motiveContent, setMotiveContent] = useState("");
   const [motiveTag, setMotiveTag] = useState(false);
   const [reminderTime, changeReminderTime] = useState(new Date());
@@ -14,7 +14,6 @@ const MotiveCreator = ({ userID, setRefresh, refresh, tags }) => {
     e.persist();
     const toISO = reminderTime.toISOString();
     CreateMotive(motiveContent, motiveTag, userID, toISO);
-    // setRefresh((refresh) => refresh++);
     setMotiveContent("");
     setMotiveTag(false);
   };
@@ -95,7 +94,6 @@ const MotiveCreator = ({ userID, setRefresh, refresh, tags }) => {
           </Col>
           <Col className="d-flex" style={{ justifyContent: "flex-end" }}>
             <Button
-              variant="primary"
               type="submit"
               onClick={submitMotive}
               disabled={disallowPost}

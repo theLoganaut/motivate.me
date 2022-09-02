@@ -1,40 +1,22 @@
 import React from "react";
-import { Card, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import AdSense from "react-adsense";
+import { Card } from "react-bootstrap";
 
-const Explore = ({ tags }) => {
-  const listTags = tags;
-
-  console.log(listTags);
-
+const Explore = () => {
   return (
     <Card
       style={{ height: "100%", width: "80%" }}
       className="d-flex, main-cards"
     >
-      <Card.Body>
-        <Form className="d-flex">
-          <Form.Control
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            style={{ width: "100%" }}
-            className="sub-cards"
-          />
-          {/* <Button variant="outline-default">➡️</Button> */}
-        </Form>
-        <div className="d-flex">
-          {listTags?.map((tag) => {
-            return (
-              <div className="spacing">
-                <Link className="links" to={`/Communities/${tag.name}`}>
-                  {tag.name}
-                </Link>
-              </div>
-            );
-          })}
-        </div>
-      </Card.Body>
+      <div style={{ borderColor: "black", borderWidth: "1px" }}>
+        <AdSense.Google
+          client="ca-pub-8632109705555830"
+          slot="5522106913"
+          style={{ display: "block" }}
+          layout="in-article"
+          format="fluid"
+        />
+      </div>
     </Card>
   );
 };

@@ -1,4 +1,14 @@
-.sidebar {
+.button-link {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-size: 24px !important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: darkslategray;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .sidebar-spacing {

@@ -875,26 +875,35 @@ export const allMotivesWithTag = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
-        name
         motives {
           items {
+            following {
+              items {
+                owner
+              }
+            }
+            complete
             content
             owner
             boosts {
               items {
                 content
                 owner
-                yays {
-                  items {
-                    owner
-                  }
-                }
                 nays {
                   items {
                     owner
                   }
                 }
+                yays {
+                  items {
+                    owner
+                  }
+                }
               }
+            }
+            reminderTime
+            tag {
+              name
             }
           }
         }

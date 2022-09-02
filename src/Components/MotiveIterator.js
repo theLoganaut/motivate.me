@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Card } from "react-bootstrap";
 import BoostIterator from "./BoostIterator";
 import Motive from "./Motive";
@@ -8,10 +7,6 @@ import "../Styles/Generics.css";
 const MotiveIterator = ({ motives, userId, username }) => {
   const motiveList = motives;
 
-  const [motiveBorder, setMotiveBorder] = useState("slategray");
-
-  console.log(motiveList);
-
   return (
     <div>
       {motiveList?.map((motive) => {
@@ -19,17 +14,11 @@ const MotiveIterator = ({ motives, userId, username }) => {
           <Card
             className="main-cards"
             style={{
-              borderColor: `${motiveBorder} !important`,
               marginTop: ".5em",
+              borderWidth: "0px",
             }}
           >
-            <Motive
-              motive={motive}
-              userId={userId}
-              username={username}
-              setMotiveBorder={setMotiveBorder}
-              motiveBorder={motiveBorder}
-            />
+            <Motive motive={motive} userId={userId} username={username} />
 
             <BoostIterator
               boosts={motive.boosts.items}

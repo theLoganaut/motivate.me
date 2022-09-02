@@ -7,7 +7,7 @@ const Boost = ({ boost, username, userId }) => {
   const [voted, setVoted] = useState(false);
   let yayButton = CreateYay;
   let nayButton = CreateNay;
-  // check if the username is in the owner of yays/nays
+  // checks if the username is in the owner of yays/nays
   useEffect(() => {
     let yays = boost.yays.items.map((item) => item.owner);
     let nays = boost.nays.items.map((item) => item.owner);
@@ -19,6 +19,8 @@ const Boost = ({ boost, username, userId }) => {
   const reVote = () => {
     // console.log("eventually delete the vote then allow");
   };
+
+  //! voting needs overhaul before implementing
 
   return (
     <Card
@@ -44,7 +46,7 @@ const Boost = ({ boost, username, userId }) => {
               justifyContent: "flex-end",
             }}
           >
-            {voted ? (
+            {/* {voted ? (
               <Button className="yum-buttons" onClick={reVote(boost.id)}>
                 Recast?
               </Button>
@@ -63,7 +65,7 @@ const Boost = ({ boost, username, userId }) => {
                   Nay!
                 </Button>
               </ButtonGroup>
-            )}
+            )} */}
           </div>
         </Col>
       </Row>

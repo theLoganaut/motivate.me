@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
-import { Col, Button, Card, Form } from "react-bootstrap";
+import { Col, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FollowMotive } from "../Controllers/Create";
 import BoostCreator from "./BoostCreator";
 
 const Motive = ({ motive, userId, username, setMotiveBorder }) => {
   const [showBoostCreator, setShowBoostCreator] = useState(false);
+
+  let currentTime = new Date().toISOString();
+
+  let motiveCalendarTime = new Date(motive.reminderTime).toLocaleDateString();
+
+  let motiveClockTime = new Date(motive.reminderTime).toLocaleTimeString();
 
   const expandContractBoost = () => {
     setShowBoostCreator((showBoostCreator) => !showBoostCreator);
@@ -15,41 +21,44 @@ const Motive = ({ motive, userId, username, setMotiveBorder }) => {
 
   const [alreadyFollowing, setAlreadyFollowing] = useState(false);
 
+  const [alreadyBoosted, setAlreadyBoosted] = useState(false);
+
   useEffect(() => {
     let followingList = motive.following.items.map((item) => item.owner);
+    let boostedList = motive.boosts.items.map((item) => item.owner);
+    if (boostedList.includes(username)) {
+      setAlreadyBoosted(true);
+    }
     if (followingList.includes(username)) {
       setAlreadyFollowing(true);
     }
     if (motive.owner === username) {
       setSameUser(true);
     }
-    if (motive.owner !== username) {
-      setSameUser(false);
-    }
-    let currentTime = new Date().toISOString();
-
-    if (motive.completed === true) {
-      setMotiveBorder("green");
-    }
-    if (motive.reminderTime <= currentTime && motive.complete !== true) {
-      setMotiveBorder("red");
-      console.log(":why no red");
-    }
   }, [
+    motive.boosts.items,
     motive.complete,
     motive.completed,
     motive.following.items,
     motive.owner,
     motive.reminderTime,
-    setMotiveBorder,
     username,
   ]);
 
-  // console.log(motive.owner, username, sameUser, alreadyFollowing);
-  // console.log(motive.following.items);
-
   return (
-    <div>
+    <Card
+      style={{
+        borderWidth: "2px",
+        borderColor:
+          motive.reminderTime <= currentTime && !motive.complete
+            ? "red"
+            : motive.complete
+            ? "green"
+            : "hidden",
+        marginRight: "0px",
+      }}
+      className="main-cards"
+    >
       <Col style={{ display: "flex" }}>
         <Col style={{ marginLeft: ".2em" }}>
           <div>
@@ -67,7 +76,11 @@ const Motive = ({ motive, userId, username, setMotiveBorder }) => {
           // make this if username is the username on the motive, you dont see the boost button
         }
         {alreadyFollowing || sameUser ? (
-          <div>{motive.reminderTime}</div>
+          <div>
+            {motiveCalendarTime}
+            <br />
+            {motiveClockTime}
+          </div>
         ) : (
           <Button
             size="sm"
@@ -75,16 +88,17 @@ const Motive = ({ motive, userId, username, setMotiveBorder }) => {
               FollowMotive(userId, motive.id, motive.reminderTime);
             }}
           >
-            {motive.reminderTime}
+            {motiveCalendarTime}
+            {motiveClockTime}
           </Button>
         )}
 
-        {!sameUser ? (
-          <Button size="sm" onClick={expandContractBoost}>
+        {sameUser || alreadyBoosted ? (
+          <></>
+        ) : (
+          <Button size="sm" onClick={expandContractBoost} className="buttons">
             {showBoostCreator ? <>⬆</> : <>⬇</>}
           </Button>
-        ) : (
-          <></>
         )}
       </Col>
       <div className="expand-container">
@@ -102,7 +116,7 @@ const Motive = ({ motive, userId, username, setMotiveBorder }) => {
           />
         </Card.Body>
       </div>
-    </div>
+    </Card>
   );
 };
 
