@@ -7,6 +7,7 @@ import Communities from "./Routes/Communities";
 import Profile from "./Routes/Profile";
 import Following from "./Routes/Following";
 import Layout from "./Routes/Layout";
+import ChangelogReports from "./Routes/ChangelogReports";
 
 function MyRoutes() {
   return (
@@ -43,6 +44,14 @@ function MyRoutes() {
             element={
               <RequireAuth>
                 <Communities />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/changelog"
+            element={
+              <RequireAuth>
+                <ChangelogReports />
               </RequireAuth>
             }
           />

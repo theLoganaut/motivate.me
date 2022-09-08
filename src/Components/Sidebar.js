@@ -10,7 +10,7 @@ const Sidebar = ({ signOut, username }) => {
     "Following",
     "Communities",
     "Profile",
-    "Settings",
+    "Changelog",
     "Sign Out",
   ];
 

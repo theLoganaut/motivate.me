@@ -1,24 +1,22 @@
 import {
   Authenticator,
   ThemeProvider,
-  Theme,
-  useTheme,
   useAuthenticator,
-  View,
 } from "@aws-amplify/ui-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
+import RiskModal from "../Components/RiskModal";
 
 const Login = () => {
-  const { tokens } = useTheme();
+  // const { tokens } = useTheme();
 
-  const melon = "#FF9F85";
+  // const melon = "#FF9F85";
   const lightyellow = "#F3EEC3";
   const yellow = "#F4D890";
   const muteRed = "#C08497";
-  const babyBlue = "#A4C8CC";
+  // const babyBlue = "#A4C8CC";
 
   const testTheme = {
     tokens: {
@@ -119,6 +117,8 @@ const Login = () => {
     },
   };
 
+  const [showRisk, setShowRisk] = useState(true);
+
   const { route } = useAuthenticator((context) => [context.route]);
   const location = useLocation();
   const navigate = useNavigate();
@@ -138,6 +138,7 @@ const Login = () => {
       fluid
     >
       <div>
+        <RiskModal setShowRisk={setShowRisk} showRisk={showRisk} />
         <div
           style={{
             marginTop: "10%",
