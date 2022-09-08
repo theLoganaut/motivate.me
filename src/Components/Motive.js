@@ -84,11 +84,15 @@ const Motive = ({ motive, userId, username, setMotiveBorder }) => {
         ) : (
           <Button
             size="sm"
+            className="buttons"
             onClick={() => {
               FollowMotive(userId, motive.id, motive.reminderTime);
             }}
           >
+            {" "}
+            Follow? <br />
             {motiveCalendarTime}
+            <br />
             {motiveClockTime}
           </Button>
         )}
