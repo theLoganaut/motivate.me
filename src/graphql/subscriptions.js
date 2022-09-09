@@ -9,6 +9,7 @@ export const onCreateBoost = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -18,10 +19,7 @@ export const onCreateBoost = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -34,6 +32,7 @@ export const onCreateBoost = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -59,24 +58,14 @@ export const onCreateBoost = /* GraphQL */ `
         publicUserMotivesId
         owner
       }
-      yays {
+      votes {
         items {
           id
+          verdict
           createdAt
           updatedAt
-          boostYaysId
-          publicUserYaysId
-          owner
-        }
-        nextToken
-      }
-      nays {
-        items {
-          id
-          createdAt
-          updatedAt
-          boostNaysId
-          publicUserNaysId
+          boostVotesId
+          publicUserVotesId
           owner
         }
         nextToken
@@ -97,6 +86,7 @@ export const onUpdateBoost = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -106,10 +96,7 @@ export const onUpdateBoost = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -122,6 +109,7 @@ export const onUpdateBoost = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -147,24 +135,14 @@ export const onUpdateBoost = /* GraphQL */ `
         publicUserMotivesId
         owner
       }
-      yays {
+      votes {
         items {
           id
+          verdict
           createdAt
           updatedAt
-          boostYaysId
-          publicUserYaysId
-          owner
-        }
-        nextToken
-      }
-      nays {
-        items {
-          id
-          createdAt
-          updatedAt
-          boostNaysId
-          publicUserNaysId
+          boostVotesId
+          publicUserVotesId
           owner
         }
         nextToken
@@ -185,6 +163,7 @@ export const onDeleteBoost = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -194,10 +173,7 @@ export const onDeleteBoost = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -210,6 +186,7 @@ export const onDeleteBoost = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -235,24 +212,14 @@ export const onDeleteBoost = /* GraphQL */ `
         publicUserMotivesId
         owner
       }
-      yays {
+      votes {
         items {
           id
+          verdict
           createdAt
           updatedAt
-          boostYaysId
-          publicUserYaysId
-          owner
-        }
-        nextToken
-      }
-      nays {
-        items {
-          id
-          createdAt
-          updatedAt
-          boostNaysId
-          publicUserNaysId
+          boostVotesId
+          publicUserVotesId
           owner
         }
         nextToken
@@ -273,6 +240,7 @@ export const onCreateMotive = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -282,10 +250,7 @@ export const onCreateMotive = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -344,6 +309,7 @@ export const onUpdateMotive = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -353,10 +319,7 @@ export const onUpdateMotive = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -415,6 +378,7 @@ export const onDeleteMotive = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -424,10 +388,7 @@ export const onDeleteMotive = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -558,6 +519,7 @@ export const onCreatePublicUser = /* GraphQL */ `
     onCreatePublicUser {
       id
       username
+      bio
       motives {
         items {
           id
@@ -596,24 +558,14 @@ export const onCreatePublicUser = /* GraphQL */ `
         }
         nextToken
       }
-      yays {
+      votes {
         items {
           id
+          verdict
           createdAt
           updatedAt
-          boostYaysId
-          publicUserYaysId
-          owner
-        }
-        nextToken
-      }
-      nays {
-        items {
-          id
-          createdAt
-          updatedAt
-          boostNaysId
-          publicUserNaysId
+          boostVotesId
+          publicUserVotesId
           owner
         }
         nextToken
@@ -629,6 +581,7 @@ export const onUpdatePublicUser = /* GraphQL */ `
     onUpdatePublicUser {
       id
       username
+      bio
       motives {
         items {
           id
@@ -667,24 +620,14 @@ export const onUpdatePublicUser = /* GraphQL */ `
         }
         nextToken
       }
-      yays {
+      votes {
         items {
           id
+          verdict
           createdAt
           updatedAt
-          boostYaysId
-          publicUserYaysId
-          owner
-        }
-        nextToken
-      }
-      nays {
-        items {
-          id
-          createdAt
-          updatedAt
-          boostNaysId
-          publicUserNaysId
+          boostVotesId
+          publicUserVotesId
           owner
         }
         nextToken
@@ -700,6 +643,7 @@ export const onDeletePublicUser = /* GraphQL */ `
     onDeletePublicUser {
       id
       username
+      bio
       motives {
         items {
           id
@@ -738,24 +682,14 @@ export const onDeletePublicUser = /* GraphQL */ `
         }
         nextToken
       }
-      yays {
+      votes {
         items {
           id
+          verdict
           createdAt
           updatedAt
-          boostYaysId
-          publicUserYaysId
-          owner
-        }
-        nextToken
-      }
-      nays {
-        items {
-          id
-          createdAt
-          updatedAt
-          boostNaysId
-          publicUserNaysId
+          boostVotesId
+          publicUserVotesId
           owner
         }
         nextToken
@@ -809,6 +743,7 @@ export const onCreateFollow = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -818,10 +753,7 @@ export const onCreateFollow = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -834,6 +766,7 @@ export const onCreateFollow = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -875,6 +808,7 @@ export const onUpdateFollow = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -884,10 +818,7 @@ export const onUpdateFollow = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -900,6 +831,7 @@ export const onUpdateFollow = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -941,6 +873,7 @@ export const onDeleteFollow = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -950,10 +883,7 @@ export const onDeleteFollow = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -966,6 +896,7 @@ export const onDeleteFollow = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -1000,13 +931,14 @@ export const onDeleteFollow = /* GraphQL */ `
     }
   }
 `;
-export const onCreateYay = /* GraphQL */ `
-  subscription OnCreateYay {
-    onCreateYay {
+export const onCreateVote = /* GraphQL */ `
+  subscription OnCreateVote {
+    onCreateVote {
       id
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -1016,10 +948,7 @@ export const onCreateYay = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -1032,6 +961,7 @@ export const onCreateYay = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -1047,10 +977,7 @@ export const onCreateYay = /* GraphQL */ `
           publicUserMotivesId
           owner
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -1059,21 +986,23 @@ export const onCreateYay = /* GraphQL */ `
         publicUserBoostsId
         owner
       }
+      verdict
       createdAt
       updatedAt
-      boostYaysId
-      publicUserYaysId
+      boostVotesId
+      publicUserVotesId
       owner
     }
   }
 `;
-export const onUpdateYay = /* GraphQL */ `
-  subscription OnUpdateYay {
-    onUpdateYay {
+export const onUpdateVote = /* GraphQL */ `
+  subscription OnUpdateVote {
+    onUpdateVote {
       id
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -1083,10 +1012,7 @@ export const onUpdateYay = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -1099,6 +1025,7 @@ export const onUpdateYay = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -1114,10 +1041,7 @@ export const onUpdateYay = /* GraphQL */ `
           publicUserMotivesId
           owner
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -1126,21 +1050,23 @@ export const onUpdateYay = /* GraphQL */ `
         publicUserBoostsId
         owner
       }
+      verdict
       createdAt
       updatedAt
-      boostYaysId
-      publicUserYaysId
+      boostVotesId
+      publicUserVotesId
       owner
     }
   }
 `;
-export const onDeleteYay = /* GraphQL */ `
-  subscription OnDeleteYay {
-    onDeleteYay {
+export const onDeleteVote = /* GraphQL */ `
+  subscription OnDeleteVote {
+    onDeleteVote {
       id
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -1150,10 +1076,7 @@ export const onDeleteYay = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -1166,6 +1089,7 @@ export const onDeleteYay = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -1181,10 +1105,7 @@ export const onDeleteYay = /* GraphQL */ `
           publicUserMotivesId
           owner
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -1193,211 +1114,11 @@ export const onDeleteYay = /* GraphQL */ `
         publicUserBoostsId
         owner
       }
+      verdict
       createdAt
       updatedAt
-      boostYaysId
-      publicUserYaysId
-      owner
-    }
-  }
-`;
-export const onCreateNay = /* GraphQL */ `
-  subscription OnCreateNay {
-    onCreateNay {
-      id
-      user {
-        id
-        username
-        motives {
-          nextToken
-        }
-        boosts {
-          nextToken
-        }
-        followed {
-          nextToken
-        }
-        yays {
-          nextToken
-        }
-        nays {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      boost {
-        id
-        content
-        user {
-          id
-          username
-          createdAt
-          updatedAt
-          owner
-        }
-        motive {
-          id
-          content
-          complete
-          reminderTime
-          createdAt
-          updatedAt
-          tagMotivesId
-          publicUserMotivesId
-          owner
-        }
-        yays {
-          nextToken
-        }
-        nays {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        motiveBoostsId
-        publicUserBoostsId
-        owner
-      }
-      createdAt
-      updatedAt
-      boostNaysId
-      publicUserNaysId
-      owner
-    }
-  }
-`;
-export const onUpdateNay = /* GraphQL */ `
-  subscription OnUpdateNay {
-    onUpdateNay {
-      id
-      user {
-        id
-        username
-        motives {
-          nextToken
-        }
-        boosts {
-          nextToken
-        }
-        followed {
-          nextToken
-        }
-        yays {
-          nextToken
-        }
-        nays {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      boost {
-        id
-        content
-        user {
-          id
-          username
-          createdAt
-          updatedAt
-          owner
-        }
-        motive {
-          id
-          content
-          complete
-          reminderTime
-          createdAt
-          updatedAt
-          tagMotivesId
-          publicUserMotivesId
-          owner
-        }
-        yays {
-          nextToken
-        }
-        nays {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        motiveBoostsId
-        publicUserBoostsId
-        owner
-      }
-      createdAt
-      updatedAt
-      boostNaysId
-      publicUserNaysId
-      owner
-    }
-  }
-`;
-export const onDeleteNay = /* GraphQL */ `
-  subscription OnDeleteNay {
-    onDeleteNay {
-      id
-      user {
-        id
-        username
-        motives {
-          nextToken
-        }
-        boosts {
-          nextToken
-        }
-        followed {
-          nextToken
-        }
-        yays {
-          nextToken
-        }
-        nays {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      boost {
-        id
-        content
-        user {
-          id
-          username
-          createdAt
-          updatedAt
-          owner
-        }
-        motive {
-          id
-          content
-          complete
-          reminderTime
-          createdAt
-          updatedAt
-          tagMotivesId
-          publicUserMotivesId
-          owner
-        }
-        yays {
-          nextToken
-        }
-        nays {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        motiveBoostsId
-        publicUserBoostsId
-        owner
-      }
-      createdAt
-      updatedAt
-      boostNaysId
-      publicUserNaysId
+      boostVotesId
+      publicUserVotesId
       owner
     }
   }

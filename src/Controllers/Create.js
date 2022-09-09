@@ -2,9 +2,9 @@ import { API, graphqlOperation } from "aws-amplify";
 import {
   createMotive,
   createBoost,
-  createYay,
-  createNay,
+  createVote,
   createFollow,
+  deleteVote,
 } from "../graphql/mutations";
 import { v4 as uuidv4 } from "uuid";
 
@@ -69,13 +69,13 @@ const FollowMotive = async (userID, motiveId, reminderTime) => {
 const CreateVote = async (userID, boostId, verdict) => {
   const postData = {
     id: uuidv4(),
-    boostVoteId: boostId,
-    publicUserVoteId: userID,
+    boostVotesId: boostId,
+    publicUserVotesId: userID,
     verdict: verdict,
     createdAt: date,
   };
   try {
-    await API.graphql(graphqlOperation(createFollow, { input: postData })).then(
+    await API.graphql(graphqlOperation(createVote, { input: postData })).then(
       (r) => console.log(r)
     );
   } catch (error) {
@@ -83,4 +83,16 @@ const CreateVote = async (userID, boostId, verdict) => {
   }
 };
 
-export { CreateMotive, CreateBoost, FollowMotive, CreateVote };
+// !BELOW ARE DELETIONS
+
+const DeleteVote = async (voteId) => {
+  try {
+    await API.graphql(graphqlOperation(deleteVote, { input: voteId })).then(
+      (r) => console.log(r)
+    );
+  } catch (error) {
+    console.log("error creating new Follow:", error);
+  }
+};
+
+export { CreateMotive, CreateBoost, FollowMotive, CreateVote, DeleteVote };

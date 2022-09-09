@@ -100,7 +100,7 @@ type Vote
   @auth(
     rules: [
       { allow: owner, operations: [create] }
-      { allow: private, operations: [read] }
+      { allow: private, operations: [read, delete] }
     ]
   ) {
   id: ID!

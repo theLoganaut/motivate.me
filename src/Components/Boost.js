@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, ButtonGroup, Row, Col } from "react-bootstrap";
-import { CreateVote } from "../Controllers/Create";
+import { CreateVote, DeleteVote } from "../Controllers/Create";
 import { Link } from "react-router-dom";
 
 const Boost = ({ boost, username, userId }) => {
   const [voted, setVoted] = useState(false);
+  const [voteId, setVoteId] = useState("");
   // let yayButton = CreateYay;
   // let nayButton = CreateNay;
   // checks if the username is in the owner of yays/nays
-  // useEffect(() => {
-  //   let yays = boost.yays.items.map((item) => item.owner);
-  //   let nays = boost.nays.items.map((item) => item.owner);
-  //   if (yays.includes(username) || nays.includes(username)) {
-  //     setVoted(true);
-  //   }
-  // }, [boost.nays.items, boost.yays.items, username]);
+  useEffect(() => {
+    // let yays = boost.yays.items.map((item) => item.owner);
+    // let ownerList = boost.votes.items.map((item) => item.owner);
+    let ownerCheck = boost.votes.items.find((item) => {
+      return item.owner === username;
+    });
+    if (ownerCheck.length !== 0) {
+      setVoteId(ownerCheck.id);
+      setVoted(true);
+    }
+  }, [boost.votes.items, username]);
 
-  const reVote = () => {
-    // console.log("eventually delete the vote then allow");
-  };
+  // const recastVote = (voteId) => {
+  //   DeleteVote(voteId)
+  // };
 
   const userVote = (bool) => {
     setVoted(true);
@@ -39,10 +44,10 @@ const Boost = ({ boost, username, userId }) => {
     >
       <Row>
         <Col style={{ minWidth: "75%" }}>
+          <Link to={`/Profile/${boost.owner}`}>{boost.owner}</Link>
           <Card.Text style={{ marginLeft: "2em", marginTop: ".5em" }}>
             {boost.content}
           </Card.Text>
-          <Link to={`/Profile/${boost.owner}`}>{boost.owner}</Link>
         </Col>
         <Col>
           <div
@@ -52,7 +57,10 @@ const Boost = ({ boost, username, userId }) => {
             }}
           >
             {voted ? (
-              <Button className="yum-buttons" onClick={reVote(boost.id)}>
+              <Button
+                className="yum-buttons"
+                onClick={() => DeleteVote(voteId)}
+              >
                 Recast?
               </Button>
             ) : (

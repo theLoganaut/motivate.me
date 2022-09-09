@@ -12,6 +12,7 @@ export const createBoost = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -21,10 +22,7 @@ export const createBoost = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -37,6 +35,7 @@ export const createBoost = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -62,24 +61,14 @@ export const createBoost = /* GraphQL */ `
         publicUserMotivesId
         owner
       }
-      yays {
+      votes {
         items {
           id
+          verdict
           createdAt
           updatedAt
-          boostYaysId
-          publicUserYaysId
-          owner
-        }
-        nextToken
-      }
-      nays {
-        items {
-          id
-          createdAt
-          updatedAt
-          boostNaysId
-          publicUserNaysId
+          boostVotesId
+          publicUserVotesId
           owner
         }
         nextToken
@@ -103,6 +92,7 @@ export const updateBoost = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -112,10 +102,7 @@ export const updateBoost = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -128,6 +115,7 @@ export const updateBoost = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -153,24 +141,14 @@ export const updateBoost = /* GraphQL */ `
         publicUserMotivesId
         owner
       }
-      yays {
+      votes {
         items {
           id
+          verdict
           createdAt
           updatedAt
-          boostYaysId
-          publicUserYaysId
-          owner
-        }
-        nextToken
-      }
-      nays {
-        items {
-          id
-          createdAt
-          updatedAt
-          boostNaysId
-          publicUserNaysId
+          boostVotesId
+          publicUserVotesId
           owner
         }
         nextToken
@@ -194,6 +172,7 @@ export const deleteBoost = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -203,10 +182,7 @@ export const deleteBoost = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -219,6 +195,7 @@ export const deleteBoost = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -244,24 +221,14 @@ export const deleteBoost = /* GraphQL */ `
         publicUserMotivesId
         owner
       }
-      yays {
+      votes {
         items {
           id
+          verdict
           createdAt
           updatedAt
-          boostYaysId
-          publicUserYaysId
-          owner
-        }
-        nextToken
-      }
-      nays {
-        items {
-          id
-          createdAt
-          updatedAt
-          boostNaysId
-          publicUserNaysId
+          boostVotesId
+          publicUserVotesId
           owner
         }
         nextToken
@@ -285,6 +252,7 @@ export const createMotive = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -294,10 +262,7 @@ export const createMotive = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -359,6 +324,7 @@ export const updateMotive = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -368,10 +334,7 @@ export const updateMotive = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -433,6 +396,7 @@ export const deleteMotive = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -442,10 +406,7 @@ export const deleteMotive = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -588,6 +549,7 @@ export const createPublicUser = /* GraphQL */ `
     createPublicUser(input: $input, condition: $condition) {
       id
       username
+      bio
       motives {
         items {
           id
@@ -626,24 +588,14 @@ export const createPublicUser = /* GraphQL */ `
         }
         nextToken
       }
-      yays {
+      votes {
         items {
           id
+          verdict
           createdAt
           updatedAt
-          boostYaysId
-          publicUserYaysId
-          owner
-        }
-        nextToken
-      }
-      nays {
-        items {
-          id
-          createdAt
-          updatedAt
-          boostNaysId
-          publicUserNaysId
+          boostVotesId
+          publicUserVotesId
           owner
         }
         nextToken
@@ -662,6 +614,7 @@ export const updatePublicUser = /* GraphQL */ `
     updatePublicUser(input: $input, condition: $condition) {
       id
       username
+      bio
       motives {
         items {
           id
@@ -700,24 +653,14 @@ export const updatePublicUser = /* GraphQL */ `
         }
         nextToken
       }
-      yays {
+      votes {
         items {
           id
+          verdict
           createdAt
           updatedAt
-          boostYaysId
-          publicUserYaysId
-          owner
-        }
-        nextToken
-      }
-      nays {
-        items {
-          id
-          createdAt
-          updatedAt
-          boostNaysId
-          publicUserNaysId
+          boostVotesId
+          publicUserVotesId
           owner
         }
         nextToken
@@ -736,6 +679,7 @@ export const deletePublicUser = /* GraphQL */ `
     deletePublicUser(input: $input, condition: $condition) {
       id
       username
+      bio
       motives {
         items {
           id
@@ -774,24 +718,14 @@ export const deletePublicUser = /* GraphQL */ `
         }
         nextToken
       }
-      yays {
+      votes {
         items {
           id
+          verdict
           createdAt
           updatedAt
-          boostYaysId
-          publicUserYaysId
-          owner
-        }
-        nextToken
-      }
-      nays {
-        items {
-          id
-          createdAt
-          updatedAt
-          boostNaysId
-          publicUserNaysId
+          boostVotesId
+          publicUserVotesId
           owner
         }
         nextToken
@@ -857,6 +791,7 @@ export const createFollow = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -866,10 +801,7 @@ export const createFollow = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -882,6 +814,7 @@ export const createFollow = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -926,6 +859,7 @@ export const updateFollow = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -935,10 +869,7 @@ export const updateFollow = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -951,6 +882,7 @@ export const updateFollow = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -995,6 +927,7 @@ export const deleteFollow = /* GraphQL */ `
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -1004,10 +937,7 @@ export const deleteFollow = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -1020,6 +950,7 @@ export const deleteFollow = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -1054,16 +985,17 @@ export const deleteFollow = /* GraphQL */ `
     }
   }
 `;
-export const createYay = /* GraphQL */ `
-  mutation CreateYay(
-    $input: CreateYayInput!
-    $condition: ModelYayConditionInput
+export const createVote = /* GraphQL */ `
+  mutation CreateVote(
+    $input: CreateVoteInput!
+    $condition: ModelVoteConditionInput
   ) {
-    createYay(input: $input, condition: $condition) {
+    createVote(input: $input, condition: $condition) {
       id
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -1073,10 +1005,7 @@ export const createYay = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -1089,6 +1018,7 @@ export const createYay = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -1104,10 +1034,7 @@ export const createYay = /* GraphQL */ `
           publicUserMotivesId
           owner
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -1116,24 +1043,26 @@ export const createYay = /* GraphQL */ `
         publicUserBoostsId
         owner
       }
+      verdict
       createdAt
       updatedAt
-      boostYaysId
-      publicUserYaysId
+      boostVotesId
+      publicUserVotesId
       owner
     }
   }
 `;
-export const updateYay = /* GraphQL */ `
-  mutation UpdateYay(
-    $input: UpdateYayInput!
-    $condition: ModelYayConditionInput
+export const updateVote = /* GraphQL */ `
+  mutation UpdateVote(
+    $input: UpdateVoteInput!
+    $condition: ModelVoteConditionInput
   ) {
-    updateYay(input: $input, condition: $condition) {
+    updateVote(input: $input, condition: $condition) {
       id
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -1143,10 +1072,7 @@ export const updateYay = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -1159,6 +1085,7 @@ export const updateYay = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -1174,10 +1101,7 @@ export const updateYay = /* GraphQL */ `
           publicUserMotivesId
           owner
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -1186,24 +1110,26 @@ export const updateYay = /* GraphQL */ `
         publicUserBoostsId
         owner
       }
+      verdict
       createdAt
       updatedAt
-      boostYaysId
-      publicUserYaysId
+      boostVotesId
+      publicUserVotesId
       owner
     }
   }
 `;
-export const deleteYay = /* GraphQL */ `
-  mutation DeleteYay(
-    $input: DeleteYayInput!
-    $condition: ModelYayConditionInput
+export const deleteVote = /* GraphQL */ `
+  mutation DeleteVote(
+    $input: DeleteVoteInput!
+    $condition: ModelVoteConditionInput
   ) {
-    deleteYay(input: $input, condition: $condition) {
+    deleteVote(input: $input, condition: $condition) {
       id
       user {
         id
         username
+        bio
         motives {
           nextToken
         }
@@ -1213,10 +1139,7 @@ export const deleteYay = /* GraphQL */ `
         followed {
           nextToken
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -1229,6 +1152,7 @@ export const deleteYay = /* GraphQL */ `
         user {
           id
           username
+          bio
           createdAt
           updatedAt
           owner
@@ -1244,10 +1168,7 @@ export const deleteYay = /* GraphQL */ `
           publicUserMotivesId
           owner
         }
-        yays {
-          nextToken
-        }
-        nays {
+        votes {
           nextToken
         }
         createdAt
@@ -1256,220 +1177,11 @@ export const deleteYay = /* GraphQL */ `
         publicUserBoostsId
         owner
       }
+      verdict
       createdAt
       updatedAt
-      boostYaysId
-      publicUserYaysId
-      owner
-    }
-  }
-`;
-export const createNay = /* GraphQL */ `
-  mutation CreateNay(
-    $input: CreateNayInput!
-    $condition: ModelNayConditionInput
-  ) {
-    createNay(input: $input, condition: $condition) {
-      id
-      user {
-        id
-        username
-        motives {
-          nextToken
-        }
-        boosts {
-          nextToken
-        }
-        followed {
-          nextToken
-        }
-        yays {
-          nextToken
-        }
-        nays {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      boost {
-        id
-        content
-        user {
-          id
-          username
-          createdAt
-          updatedAt
-          owner
-        }
-        motive {
-          id
-          content
-          complete
-          reminderTime
-          createdAt
-          updatedAt
-          tagMotivesId
-          publicUserMotivesId
-          owner
-        }
-        yays {
-          nextToken
-        }
-        nays {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        motiveBoostsId
-        publicUserBoostsId
-        owner
-      }
-      createdAt
-      updatedAt
-      boostNaysId
-      publicUserNaysId
-      owner
-    }
-  }
-`;
-export const updateNay = /* GraphQL */ `
-  mutation UpdateNay(
-    $input: UpdateNayInput!
-    $condition: ModelNayConditionInput
-  ) {
-    updateNay(input: $input, condition: $condition) {
-      id
-      user {
-        id
-        username
-        motives {
-          nextToken
-        }
-        boosts {
-          nextToken
-        }
-        followed {
-          nextToken
-        }
-        yays {
-          nextToken
-        }
-        nays {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      boost {
-        id
-        content
-        user {
-          id
-          username
-          createdAt
-          updatedAt
-          owner
-        }
-        motive {
-          id
-          content
-          complete
-          reminderTime
-          createdAt
-          updatedAt
-          tagMotivesId
-          publicUserMotivesId
-          owner
-        }
-        yays {
-          nextToken
-        }
-        nays {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        motiveBoostsId
-        publicUserBoostsId
-        owner
-      }
-      createdAt
-      updatedAt
-      boostNaysId
-      publicUserNaysId
-      owner
-    }
-  }
-`;
-export const deleteNay = /* GraphQL */ `
-  mutation DeleteNay(
-    $input: DeleteNayInput!
-    $condition: ModelNayConditionInput
-  ) {
-    deleteNay(input: $input, condition: $condition) {
-      id
-      user {
-        id
-        username
-        motives {
-          nextToken
-        }
-        boosts {
-          nextToken
-        }
-        followed {
-          nextToken
-        }
-        yays {
-          nextToken
-        }
-        nays {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      boost {
-        id
-        content
-        user {
-          id
-          username
-          createdAt
-          updatedAt
-          owner
-        }
-        motive {
-          id
-          content
-          complete
-          reminderTime
-          createdAt
-          updatedAt
-          tagMotivesId
-          publicUserMotivesId
-          owner
-        }
-        yays {
-          nextToken
-        }
-        nays {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        motiveBoostsId
-        publicUserBoostsId
-        owner
-      }
-      createdAt
-      updatedAt
-      boostNaysId
-      publicUserNaysId
+      boostVotesId
+      publicUserVotesId
       owner
     }
   }
