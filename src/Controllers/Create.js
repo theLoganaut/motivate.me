@@ -48,40 +48,6 @@ const CreateBoost = async (content, userID, motiveId) => {
   }
 };
 
-const CreateYay = async (userID, boostId) => {
-  //needs to get post id too
-  const postData = {
-    id: uuidv4(),
-    boostYaysId: boostId,
-    createdAt: date,
-    publicUserYaysId: userID,
-  };
-  try {
-    await API.graphql(graphqlOperation(createYay, { input: postData })).then(
-      (r) => console.log(r)
-    );
-  } catch (error) {
-    console.log("error creating new Yay:", error);
-  }
-};
-
-const CreateNay = async (userID, boostId) => {
-  //needs to get post id too
-  const postData = {
-    id: uuidv4(),
-    boostNaysId: boostId,
-    createdAt: date,
-    publicUserNaysId: userID,
-  };
-  try {
-    await API.graphql(graphqlOperation(createNay, { input: postData })).then(
-      (r) => console.log(r)
-    );
-  } catch (error) {
-    console.log("error creating new Nay:", error);
-  }
-};
-
 const FollowMotive = async (userID, motiveId, reminderTime) => {
   //needs to get post id too
   const postData = {
@@ -99,4 +65,22 @@ const FollowMotive = async (userID, motiveId, reminderTime) => {
     console.log("error creating new Follow:", error);
   }
 };
-export { CreateMotive, CreateBoost, CreateYay, CreateNay, FollowMotive };
+
+const CreateVote = async (userID, boostId, verdict) => {
+  const postData = {
+    id: uuidv4(),
+    boostVoteId: boostId,
+    publicUserVoteId: userID,
+    verdict: verdict,
+    createdAt: date,
+  };
+  try {
+    await API.graphql(graphqlOperation(createFollow, { input: postData })).then(
+      (r) => console.log(r)
+    );
+  } catch (error) {
+    console.log("error creating new Follow:", error);
+  }
+};
+
+export { CreateMotive, CreateBoost, FollowMotive, CreateVote };

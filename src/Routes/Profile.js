@@ -67,8 +67,8 @@ function Profile({ signOut, user }) {
               M's n B's
             </Nav.Link>
           </Nav.Item>
-          {/* //! awaiting voting overhaul */}
-          {/* <Nav.Item
+
+          <Nav.Item
             style={{
               borderColor: "black",
               borderWidth: "2px",
@@ -86,7 +86,7 @@ function Profile({ signOut, user }) {
             >
               Following
             </Nav.Link>
-          </Nav.Item> */}
+          </Nav.Item>
           <Nav.Item
             style={{
               borderColor: "black",
@@ -106,6 +106,7 @@ function Profile({ signOut, user }) {
               Ongoing
             </Nav.Link>
           </Nav.Item>
+          {/* //! awaiting voting overhaul */}
           <Nav.Item
             style={{
               borderColor: "black",

@@ -10,8 +10,7 @@ type Boost
   content: String
   user: PublicUser @belongsTo
   motive: Motive @belongsTo
-  yays: [Yay] @hasMany
-  nays: [Nay] @hasMany
+  votes: [Vote] @hasMany
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }
@@ -61,11 +60,11 @@ type PublicUser
   ) {
   id: ID!
   username: String! @index(name: "byUsername", queryField: "userByUsername")
+  bio: String
   motives: [Motive] @hasMany
   boosts: [Boost] @hasMany
   followed: [Follow] @hasMany
-  yays: [Yay] @hasMany
-  nays: [Nay] @hasMany
+  votes: [Vote] @hasMany
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }
@@ -96,7 +95,7 @@ type Follow
   updatedAt: AWSDateTime
 }
 
-type Yay
+type Vote
   @model(timestamps: { createdAt: "createdAt", updatedAt: "createdAt" })
   @auth(
     rules: [
@@ -107,21 +106,7 @@ type Yay
   id: ID!
   user: PublicUser @belongsTo
   boost: Boost @belongsTo
-  createdAt: AWSDateTime
-  updatedAt: AWSDateTime
-}
-
-type Nay
-  @model(timestamps: { createdAt: "createdAt", updatedAt: "createdAt" })
-  @auth(
-    rules: [
-      { allow: owner, operations: [create] }
-      { allow: private, operations: [read] }
-    ]
-  ) {
-  id: ID!
-  user: PublicUser @belongsTo
-  boost: Boost @belongsTo
+  verdict: Boolean
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }
